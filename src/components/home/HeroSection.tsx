@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const HeroSection = () => {
   return (
@@ -66,17 +66,16 @@ const HeroSection = () => {
                   <div className="h-6 rounded-md bg-white/5 max-w-xs" />
                 </div>
               </div>
-              {/* Dashboard content placeholder */}
-              <div className="aspect-video bg-gradient-to-br from-hero via-surface-dark to-hero flex items-center justify-center relative">
-                <div className="absolute inset-0 opacity-10" style={{
-                  backgroundImage: "radial-gradient(circle at 30% 40%, hsl(var(--primary)) 0%, transparent 50%), radial-gradient(circle at 70% 60%, hsl(var(--blue-glow)) 0%, transparent 40%)"
-                }} />
-                <button className="relative z-10 w-16 h-16 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center hover:bg-primary/30 transition-colors group">
-                  <Play size={24} className="text-primary ml-1 group-hover:scale-110 transition-transform" />
-                </button>
-                <p className="absolute bottom-4 left-0 right-0 text-center text-xs text-hero-foreground/30">
-                  Video coming soon
-                </p>
+              {/* Hero video */}
+              <div className="aspect-video bg-black">
+                <video
+                  className="w-full h-full object-cover"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  src="/hero-video.mp4"
+                />
               </div>
             </div>
             {/* Floating badge */}
