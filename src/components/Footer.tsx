@@ -9,13 +9,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link to="/" className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-display font-bold text-sm">R</span>
-              </div>
-              <span className="font-display font-bold text-lg">
-                RIOT<span className="text-primary">ecommerce</span>
-              </span>
+            <Link to="/" className="flex items-center mb-4">
+              <img src={logo} alt="RIOT Ecommerce" className="h-10 w-auto brightness-0 invert" />
             </Link>
             <p className="text-sm text-hero-foreground/60 leading-relaxed mb-6">
               Empowering ecommerce brands with data-driven strategies, seamless operations, and scalable growth solutions.

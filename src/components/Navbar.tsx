@@ -21,13 +21,8 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-hero/90 backdrop-blur-md border-b border-white/10">
       <div className="container-wide flex items-center justify-between h-16 sm:h-20 px-4 sm:px-6 lg:px-8">
-        <Link to="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-            <span className="text-primary-foreground font-display font-bold text-sm">R</span>
-          </div>
-          <span className="font-display font-bold text-lg text-hero-foreground">
-            RIOT<span className="text-primary">ecommerce</span>
-          </span>
+        <Link to="/" className="flex items-center">
+          <img src={logo} alt="RIOT Ecommerce" className="h-10 w-auto brightness-0 invert" />
         </Link>
 
         {/* Desktop */}
