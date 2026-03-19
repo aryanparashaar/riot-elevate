@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { ArrowRight, Clock } from "lucide-react";
 import SectionHeading from "../SectionHeading";
 import AnimatedSection from "../AnimatedSection";
@@ -6,8 +7,8 @@ import AnimatedSection from "../AnimatedSection";
 export const blogPosts = [
   {
     slug: "ecommerce-customer-retention-strategies",
-    title: "7 Proven Customer Retention Strategies for Ecommerce in 2025",
-    excerpt: "Discover data-backed tactics to keep your customers coming back and increase lifetime value by up to 300%.",
+    title: "7 Retention Plays That Turned One-Time Buyers into Lifetime Customers",
+    excerpt: "Data-backed tactics to boost LTV by up to 300% — without increasing ad spend by a single dollar.",
     category: "Strategy",
     readTime: "6 min read",
     author: "RIOT Team",
@@ -16,8 +17,8 @@ export const blogPosts = [
   },
   {
     slug: "automating-ecommerce-operations",
-    title: "The Complete Guide to Automating Your Ecommerce Operations",
-    excerpt: "Learn how to identify automation opportunities and implement solutions that save time and reduce errors.",
+    title: "The Automation Playbook: Cut Operational Costs by 40% in 90 Days",
+    excerpt: "A step-by-step framework for identifying, prioritizing, and deploying automation that actually moves the needle.",
     category: "Operations",
     readTime: "8 min read",
     author: "RIOT Team",
@@ -26,8 +27,8 @@ export const blogPosts = [
   },
   {
     slug: "scaling-customer-support-ecommerce",
-    title: "How to Scale Customer Support Without Sacrificing Quality",
-    excerpt: "Strategies for growing your support team and systems while maintaining the personal touch customers expect.",
+    title: "Scale Support 10x Without Hiring 10x More Agents",
+    excerpt: "How the smartest ecommerce brands handle exponential ticket growth while keeping quality and cost in check.",
     category: "Customer Experience",
     readTime: "5 min read",
     author: "RIOT Team",
@@ -38,19 +39,24 @@ export const blogPosts = [
 
 const BlogPreviewSection = () => {
   return (
-    <section className="section-padding bg-background">
-      <div className="container-wide">
+    <section className="section-padding bg-background relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-subtle" />
+      <div className="container-wide relative z-10">
         <SectionHeading
-          label="From Our Blog"
-          title="Insights & Resources"
-          description="Expert insights on ecommerce operations, growth strategies, and industry trends."
+          label="Insights"
+          title="Actionable Intelligence"
+          description="Battle-tested frameworks, strategies, and playbooks from the frontlines of ecommerce growth."
         />
         <div className="grid md:grid-cols-3 gap-6">
           {blogPosts.map((post, i) => (
             <AnimatedSection key={i} delay={i * 0.1}>
-              <div className="group rounded-2xl border border-border bg-card overflow-hidden hover:shadow-lg hover:shadow-primary/5 hover:border-primary/20 transition-all duration-300 h-full flex flex-col">
-                <div className="h-44 bg-gradient-to-br from-primary/5 to-primary/10 flex items-center justify-center">
-                  <span className="text-4xl font-display font-bold text-primary/10">{post.category}</span>
+              <motion.div
+                whileHover={{ y: -6, scale: 1.01 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="card-premium h-full flex flex-col group"
+              >
+                <div className="h-44 bg-gradient-to-br from-primary/[0.04] to-primary/[0.08] flex items-center justify-center relative overflow-hidden">
+                  <span className="text-5xl font-display font-bold text-primary/[0.06] group-hover:text-primary/[0.12] transition-colors duration-500">{post.category}</span>
                 </div>
                 <div className="p-6 flex flex-col flex-1">
                   <div className="flex items-center gap-3 mb-3">
@@ -59,7 +65,7 @@ const BlogPreviewSection = () => {
                       <Clock size={12} /> {post.readTime}
                     </span>
                   </div>
-                  <h3 className="text-lg font-display font-semibold text-card-foreground mb-2 group-hover:text-primary transition-colors leading-snug">
+                  <h3 className="text-lg font-display font-semibold text-card-foreground mb-2 group-hover:text-primary transition-colors duration-300 leading-snug">
                     {post.title}
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-1">{post.excerpt}</p>
@@ -70,7 +76,7 @@ const BlogPreviewSection = () => {
                     Read More <ArrowRight size={14} />
                   </Link>
                 </div>
-              </div>
+              </motion.div>
             </AnimatedSection>
           ))}
         </div>

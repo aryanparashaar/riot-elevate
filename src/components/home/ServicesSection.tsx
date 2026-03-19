@@ -1,35 +1,41 @@
+import { motion } from "framer-motion";
 import { Headphones, BarChart3, Settings, Zap, ShieldCheck, TrendingUp } from "lucide-react";
 import SectionHeading from "../SectionHeading";
 import AnimatedSection from "../AnimatedSection";
 
 const services = [
-  { icon: Headphones, title: "CRM Solutions", description: "Streamline customer interactions with intelligent CRM workflows that reduce ticket volume and boost satisfaction." },
-  { icon: BarChart3, title: "Performance Analytics", description: "Make data-driven decisions with real-time dashboards and actionable insights across your ecommerce ecosystem." },
-  { icon: Settings, title: "Backend Operations", description: "Optimize fulfillment, inventory, and order management for seamless backend performance at scale." },
-  { icon: Zap, title: "Process Automation", description: "Eliminate repetitive tasks with smart automation that saves time and reduces human error." },
-  { icon: ShieldCheck, title: "Quality Assurance", description: "Maintain 99% error-free operations with rigorous quality checks and continuous monitoring." },
-  { icon: TrendingUp, title: "Growth Strategy", description: "Develop data-backed growth roadmaps that drive revenue, customer acquisition, and market expansion." },
+  { icon: Headphones, title: "CRM & Customer Experience", description: "Slash ticket volume by 60% with intelligent workflows, AI-powered routing, and proactive support systems that turn customers into advocates." },
+  { icon: BarChart3, title: "Revenue Analytics", description: "Real-time dashboards and predictive insights that surface growth opportunities and eliminate revenue leaks across every channel." },
+  { icon: Settings, title: "Backend Operations", description: "Bulletproof order management, inventory sync, and fulfillment optimization — engineered to scale with zero downtime." },
+  { icon: Zap, title: "Intelligent Automation", description: "Custom automation pipelines that eliminate 80% of repetitive tasks, reducing costs while accelerating every workflow." },
+  { icon: ShieldCheck, title: "Marketplace Management", description: "End-to-end Amazon, Walmart, and multi-channel management — from listing optimization to advertising and compliance." },
+  { icon: TrendingUp, title: "Growth Engineering", description: "Data-backed growth strategies that consistently deliver 3-5x ROI through conversion optimization, retention, and market expansion." },
 ];
 
 const ServicesSection = () => {
   return (
-    <section className="section-padding bg-background">
-      <div className="container-wide">
+    <section className="section-padding bg-background relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-subtle" />
+      <div className="container-wide relative z-10">
         <SectionHeading
           label="What We Do"
-          title="End-to-End Ecommerce Excellence"
-          description="From strategy to execution, we provide comprehensive solutions that transform your ecommerce operations."
+          title="Full-Stack Ecommerce Operations"
+          description="Every service engineered to remove friction, unlock growth, and give your team leverage to move faster."
         />
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, i) => (
             <AnimatedSection key={i} delay={i * 0.08}>
-              <div className="group relative p-6 sm:p-8 rounded-2xl border border-border bg-card hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors">
-                  <service.icon size={22} className="text-primary" />
+              <motion.div
+                whileHover={{ y: -6, scale: 1.01 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="card-premium p-6 sm:p-8 h-full group cursor-default"
+              >
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary group-hover:shadow-lg group-hover:shadow-primary/20 transition-all duration-500">
+                  <service.icon size={22} className="text-primary group-hover:text-primary-foreground transition-colors duration-500" />
                 </div>
                 <h3 className="text-lg font-display font-semibold text-card-foreground mb-2">{service.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{service.description}</p>
-              </div>
+              </motion.div>
             </AnimatedSection>
           ))}
         </div>

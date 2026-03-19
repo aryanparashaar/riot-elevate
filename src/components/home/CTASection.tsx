@@ -1,26 +1,38 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import AnimatedSection from "../AnimatedSection";
 
 const CTASection = () => {
   return (
-    <section className="section-padding bg-hero relative overflow-hidden">
-      <div className="absolute inset-0 opacity-20" style={{
-        backgroundImage: "radial-gradient(circle at 20% 50%, hsl(var(--primary)) 0%, transparent 50%), radial-gradient(circle at 80% 50%, hsl(var(--blue-glow)) 0%, transparent 40%)"
-      }} />
+    <section className="section-padding bg-gradient-hero relative overflow-hidden">
+      {/* Glowing orbs */}
+      <motion.div
+        className="absolute top-0 left-1/4 w-[600px] h-[400px] rounded-full opacity-[0.08]"
+        style={{ background: "radial-gradient(circle, hsl(var(--primary)), transparent 60%)" }}
+        animate={{ scale: [1, 1.1, 1] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute bottom-0 right-1/4 w-[500px] h-[400px] rounded-full opacity-[0.05]"
+        style={{ background: "radial-gradient(circle, hsl(var(--blue-glow)), transparent 60%)" }}
+        animate={{ scale: [1, 1.15, 1] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+      />
+
       <div className="container-wide relative z-10">
-        <AnimatedSection className="text-center max-w-2xl mx-auto">
+        <AnimatedSection variant="scale" className="text-center max-w-2xl mx-auto">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-hero-foreground leading-tight mb-4">
-            Ready to Transform Your Ecommerce?
+            Ready to <span className="text-gradient">Outperform</span> Your Competition?
           </h2>
-          <p className="text-base sm:text-lg text-hero-foreground/60 leading-relaxed mb-8">
-            Schedule a free consultation and discover how RIOT Ecommerce can help you scale smarter, faster, and more efficiently.
+          <p className="text-base sm:text-lg text-hero-foreground/50 leading-relaxed mb-10">
+            Book a free strategy call. In 30 minutes, we'll map out exactly how to unlock your next phase of growth.
           </p>
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-all hover:gap-3 text-base"
+            className="btn-glow group text-base px-8 py-4"
           >
-            Schedule a Consultation <ArrowRight size={20} />
+            Book Your Strategy Call <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
           </Link>
         </AnimatedSection>
       </div>
