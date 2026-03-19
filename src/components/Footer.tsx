@@ -1,42 +1,48 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { Linkedin, Twitter, Instagram, Mail, Phone, MapPin } from "lucide-react";
 import logo from "@/assets/logo.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-hero text-hero-foreground">
-      <div className="container-wide section-padding">
+    <footer className="bg-gradient-hero text-hero-foreground relative overflow-hidden">
+      {/* Subtle glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[200px] opacity-[0.04]"
+        style={{ background: "radial-gradient(ellipse, hsl(var(--primary)), transparent 70%)" }} />
+
+      <div className="container-wide section-padding relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center mb-4">
               <img src={logo} alt="RIOT Ecommerce" className="h-10 w-auto brightness-0 invert" />
             </Link>
-            <p className="text-sm text-hero-foreground/60 leading-relaxed mb-6">
-              Empowering ecommerce brands with data-driven strategies, seamless operations, and scalable growth solutions.
+            <p className="text-sm text-hero-foreground/50 leading-relaxed mb-6">
+              Engineering high-performance ecommerce operations for brands that refuse to settle for average.
             </p>
             <div className="flex gap-3">
               {[Linkedin, Twitter, Instagram].map((Icon, i) => (
-                <a
+                <motion.a
                   key={i}
                   href="#"
-                  className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-colors"
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  className="w-9 h-9 rounded-lg bg-white/[0.04] border border-white/[0.06] flex items-center justify-center hover:bg-primary/20 hover:border-primary/30 hover:text-primary transition-colors duration-300"
                 >
                   <Icon size={16} />
-                </a>
+                </motion.a>
               ))}
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-display font-semibold text-sm mb-4 uppercase tracking-wider text-hero-foreground/40">Navigation</h4>
+            <h4 className="font-display font-semibold text-sm mb-5 uppercase tracking-wider text-hero-foreground/30">Navigation</h4>
             <ul className="space-y-2.5">
               {["Home", "About", "Services", "How It Works", "Blog", "Contact"].map((item) => (
                 <li key={item}>
                   <Link
                     to={`/${item === "Home" ? "" : item.toLowerCase().replace(/ /g, "-")}`}
-                    className="text-sm text-hero-foreground/60 hover:text-primary transition-colors"
+                    className="text-sm text-hero-foreground/50 hover:text-primary transition-colors duration-300"
                   >
                     {item}
                   </Link>
@@ -47,11 +53,11 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h4 className="font-display font-semibold text-sm mb-4 uppercase tracking-wider text-hero-foreground/40">Services</h4>
+            <h4 className="font-display font-semibold text-sm mb-5 uppercase tracking-wider text-hero-foreground/30">Services</h4>
             <ul className="space-y-2.5">
-              {["CRM Solutions", "Backend Support", "Customer Operations", "Ecommerce Strategy", "Performance Analytics", "Process Automation"].map((item) => (
+              {["CRM Solutions", "Marketplace Management", "Revenue Analytics", "Growth Engineering", "Process Automation", "Backend Operations"].map((item) => (
                 <li key={item}>
-                  <span className="text-sm text-hero-foreground/60">{item}</span>
+                  <span className="text-sm text-hero-foreground/50">{item}</span>
                 </li>
               ))}
             </ul>
@@ -59,31 +65,31 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h4 className="font-display font-semibold text-sm mb-4 uppercase tracking-wider text-hero-foreground/40">Contact</h4>
+            <h4 className="font-display font-semibold text-sm mb-5 uppercase tracking-wider text-hero-foreground/30">Contact</h4>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
                 <Mail size={16} className="mt-0.5 text-primary shrink-0" />
-                <span className="text-sm text-hero-foreground/60">hello@riotecommerce.com</span>
+                <span className="text-sm text-hero-foreground/50">hello@riotecommerce.com</span>
               </li>
               <li className="flex items-start gap-3">
                 <Phone size={16} className="mt-0.5 text-primary shrink-0" />
-                <span className="text-sm text-hero-foreground/60">+1 (555) 123-4567</span>
+                <span className="text-sm text-hero-foreground/50">+1 (555) 123-4567</span>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin size={16} className="mt-0.5 text-primary shrink-0" />
-                <span className="text-sm text-hero-foreground/60">Global Operations — Remote First</span>
+                <span className="text-sm text-hero-foreground/50">Global Operations — Remote First</span>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-hero-foreground/40">
+        <div className="mt-14 pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-hero-foreground/30">
             © {new Date().getFullYear()} RIOT Ecommerce. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <a href="#" className="text-xs text-hero-foreground/40 hover:text-hero-foreground/60 transition-colors">Privacy Policy</a>
-            <a href="#" className="text-xs text-hero-foreground/40 hover:text-hero-foreground/60 transition-colors">Terms of Service</a>
+            <a href="#" className="text-xs text-hero-foreground/30 hover:text-hero-foreground/50 transition-colors duration-300">Privacy Policy</a>
+            <a href="#" className="text-xs text-hero-foreground/30 hover:text-hero-foreground/50 transition-colors duration-300">Terms of Service</a>
           </div>
         </div>
       </div>

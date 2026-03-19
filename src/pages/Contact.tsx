@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { z } from "zod";
 import AnimatedSection from "@/components/AnimatedSection";
 import { Mail, Phone, MapPin, Send, CheckCircle } from "lucide-react";
@@ -14,12 +15,12 @@ const contactSchema = z.object({
 type ContactForm = z.infer<typeof contactSchema>;
 
 const services = [
-  "CRM Solutions",
+  "CRM & Customer Experience",
+  "Marketplace Management",
+  "Revenue Analytics",
+  "Intelligent Automation",
+  "Growth Engineering",
   "Backend Operations",
-  "Performance Analytics",
-  "Process Automation",
-  "Growth Strategy",
-  "Quality Assurance",
   "Other",
 ];
 
@@ -51,25 +52,30 @@ const Contact = () => {
 
   return (
     <>
-      <section className="bg-hero pt-32 pb-16 sm:pt-36 sm:pb-20">
-        <div className="container-wide px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="max-w-3xl mx-auto text-center">
+      <section className="bg-gradient-hero pt-32 pb-16 sm:pt-36 sm:pb-20 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.02]" style={{
+          backgroundImage: "linear-gradient(hsl(var(--primary)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)",
+          backgroundSize: "80px 80px"
+        }} />
+        <div className="container-wide px-4 sm:px-6 lg:px-8 relative z-10">
+          <AnimatedSection variant="blur" className="max-w-3xl mx-auto text-center">
             <span className="inline-block px-3 py-1 text-xs font-semibold tracking-widest uppercase rounded-full bg-primary/10 text-primary mb-4">Contact</span>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-hero-foreground leading-tight mb-6">
-              Let's Talk Growth
+              Let's Build Your Growth Engine
             </h1>
-            <p className="text-lg text-hero-foreground/60 leading-relaxed">
-              Ready to transform your ecommerce operations? Get in touch and we'll schedule a free consultation.
+            <p className="text-lg text-hero-foreground/50 leading-relaxed">
+              Ready to stop firefighting and start scaling? Book a free strategy call — we'll map your next phase of growth in 30 minutes.
             </p>
           </AnimatedSection>
         </div>
       </section>
 
-      <section className="section-padding bg-background">
-        <div className="container-wide">
+      <section className="section-padding bg-background relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-subtle" />
+        <div className="container-wide relative z-10">
           <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
             {/* Contact Info */}
-            <AnimatedSection className="lg:col-span-2">
+            <AnimatedSection variant="fadeLeft" className="lg:col-span-2">
               <h2 className="text-2xl font-display font-bold text-foreground mb-6">Get In Touch</h2>
               <div className="space-y-5 mb-8">
                 {[
@@ -77,7 +83,12 @@ const Contact = () => {
                   { icon: Phone, label: "Phone", value: "+1 (555) 123-4567" },
                   { icon: MapPin, label: "Location", value: "Global Operations — Remote First" },
                 ].map((item, i) => (
-                  <div key={i} className="flex items-start gap-4">
+                  <motion.div
+                    key={i}
+                    whileHover={{ x: 4 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    className="flex items-start gap-4"
+                  >
                     <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
                       <item.icon size={18} className="text-primary" />
                     </div>
@@ -85,29 +96,33 @@ const Contact = () => {
                       <p className="text-xs text-muted-foreground uppercase tracking-wider">{item.label}</p>
                       <p className="text-sm font-medium text-foreground">{item.value}</p>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
-              <div className="p-6 rounded-2xl bg-surface-offwhite border border-border">
-                <h3 className="font-display font-semibold text-foreground mb-2">Free Consultation</h3>
+              <div className="card-premium p-6">
+                <h3 className="font-display font-semibold text-card-foreground mb-2">Free Strategy Call</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Book a complimentary 30-minute discovery call. We'll assess your operations and identify immediate opportunities for improvement.
+                  30-minute discovery session. We'll audit your operations, identify quick wins, and outline a roadmap — no strings attached.
                 </p>
               </div>
             </AnimatedSection>
 
             {/* Form */}
-            <AnimatedSection delay={0.15} className="lg:col-span-3">
+            <AnimatedSection variant="fadeRight" delay={0.15} className="lg:col-span-3">
               {submitted ? (
-                <div className="rounded-2xl border border-border bg-card p-8 sm:p-12 text-center">
+                <motion.div
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  className="card-premium p-8 sm:p-12 text-center"
+                >
                   <div className="w-16 h-16 rounded-full bg-green-500/10 flex items-center justify-center mx-auto mb-4">
                     <CheckCircle size={32} className="text-green-500" />
                   </div>
-                  <h3 className="text-xl font-display font-bold text-card-foreground mb-2">Message Sent!</h3>
-                  <p className="text-muted-foreground">Thank you for reaching out. Our team will get back to you within 24 hours.</p>
-                </div>
+                  <h3 className="text-xl font-display font-bold text-card-foreground mb-2">We're On It.</h3>
+                  <p className="text-muted-foreground">Our team will reach out within 24 hours with next steps. Looking forward to building something great together.</p>
+                </motion.div>
               ) : (
-                <form onSubmit={handleSubmit} className="rounded-2xl border border-border bg-card p-6 sm:p-8 space-y-5">
+                <form onSubmit={handleSubmit} className="card-premium p-6 sm:p-8 space-y-5">
                   {/* Honeypot */}
                   <input type="text" name="website" className="hidden" tabIndex={-1} autoComplete="off" />
 
@@ -118,7 +133,7 @@ const Contact = () => {
                         type="text"
                         value={form.name}
                         onChange={(e) => handleChange("name", e.target.value)}
-                        className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
+                        className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-300"
                         placeholder="Your name"
                       />
                       {errors.name && <p className="text-xs text-destructive mt-1">{errors.name}</p>}
@@ -129,7 +144,7 @@ const Contact = () => {
                         type="email"
                         value={form.email}
                         onChange={(e) => handleChange("email", e.target.value)}
-                        className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
+                        className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-300"
                         placeholder="you@company.com"
                       />
                       {errors.email && <p className="text-xs text-destructive mt-1">{errors.email}</p>}
@@ -143,7 +158,7 @@ const Contact = () => {
                         type="text"
                         value={form.company}
                         onChange={(e) => handleChange("company", e.target.value)}
-                        className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
+                        className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-300"
                         placeholder="Your company"
                       />
                     </div>
@@ -152,7 +167,7 @@ const Contact = () => {
                       <select
                         value={form.service}
                         onChange={(e) => handleChange("service", e.target.value)}
-                        className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
+                        className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-300"
                       >
                         <option value="">Select a service</option>
                         {services.map((s) => (
@@ -169,15 +184,15 @@ const Contact = () => {
                       rows={5}
                       value={form.message}
                       onChange={(e) => handleChange("message", e.target.value)}
-                      className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors resize-none"
-                      placeholder="Tell us about your project and goals..."
+                      className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-300 resize-none"
+                      placeholder="Tell us about your challenges and growth goals..."
                     />
                     {errors.message && <p className="text-xs text-destructive mt-1">{errors.message}</p>}
                   </div>
 
                   <button
                     type="submit"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-colors w-full sm:w-auto justify-center"
+                    className="btn-glow w-full sm:w-auto justify-center"
                   >
                     Send Message <Send size={16} />
                   </button>
