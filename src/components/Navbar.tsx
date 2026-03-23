@@ -31,7 +31,7 @@ const Navbar = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "bg-[#0a0a0a]/95 backdrop-blur-xl border-b border-white/[0.06] shadow-lg shadow-black/20" : "bg-transparent"
+        scrolled ? "bg-hero/98 backdrop-blur-2xl border-b border-white/[0.08] shadow-2xl shadow-black/40" : "bg-transparent"
       }`}
     >
       <div className="container-wide flex items-center justify-between h-16 sm:h-20 px-4 sm:px-6 lg:px-8">
@@ -45,10 +45,10 @@ const Navbar = () => {
             <Link
               key={link.to}
               to={link.to}
-              className={`relative px-3 py-2 text-sm font-medium rounded-md transition-colors duration-300 ${
+              className={`relative px-3.5 py-2 text-sm font-medium rounded-lg transition-all duration-300 ${
                 location.pathname === link.to
-                  ? "text-primary"
-                  : "text-hero-foreground/60 hover:text-hero-foreground"
+                  ? "text-white bg-white/[0.08]"
+                  : "text-white/50 hover:text-white hover:bg-white/[0.04]"
               }`}
             >
               {link.label}
@@ -90,7 +90,7 @@ const Navbar = () => {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-            className="lg:hidden bg-hero/98 backdrop-blur-xl border-t border-white/[0.06] overflow-hidden"
+            className="lg:hidden bg-hero backdrop-blur-2xl border-t border-white/[0.08] overflow-hidden"
           >
             <div className="px-4 py-4 space-y-1">
               {navLinks.map((link, i) => (
@@ -103,10 +103,10 @@ const Navbar = () => {
                   <Link
                     to={link.to}
                     onClick={() => setOpen(false)}
-                    className={`block px-3 py-2.5 rounded-md text-sm font-medium transition-colors ${
+                    className={`block px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${
                       location.pathname === link.to
-                        ? "text-primary bg-white/5"
-                        : "text-hero-foreground/60 hover:text-hero-foreground"
+                        ? "text-white bg-white/[0.08]"
+                        : "text-white/50 hover:text-white hover:bg-white/[0.04]"
                     }`}
                   >
                     {link.label}
