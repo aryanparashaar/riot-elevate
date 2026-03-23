@@ -5,7 +5,7 @@ import logo from "@/assets/logo.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-hero text-hero-foreground relative overflow-hidden">
+    <footer className="bg-[#0a0a0a] text-hero-foreground relative overflow-hidden">
       {/* Subtle glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[200px] opacity-[0.04]"
         style={{ background: "radial-gradient(ellipse, hsl(var(--primary)), transparent 70%)" }} />
@@ -15,7 +15,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center mb-4">
-              <img src={logo} alt="RIOT Ecommerce" className="h-10 w-auto brightness-0 invert" />
+              <img src={logo} alt="RIOT Ecommerce" className="h-14 w-auto invert" />
             </Link>
             <p className="text-sm text-hero-foreground/50 leading-relaxed mb-6">
               Engineering high-performance ecommerce operations for brands that refuse to settle for average.
