@@ -55,7 +55,7 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h4 className="font-display font-semibold text-sm mb-5 uppercase tracking-wider text-hero-foreground/30">Services</h4>
+            <h4 className="font-display font-semibold text-sm mb-5 uppercase tracking-wider text-white/25">Services</h4>
             <ul className="space-y-2.5">
               {["CRM Solutions", "Marketplace Management", "Revenue Analytics", "Growth Engineering", "Process Automation", "Backend Operations"].map((item) => (
                 <li key={item}>
