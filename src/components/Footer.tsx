@@ -44,7 +44,7 @@ const Footer = () => {
                 <li key={item}>
                   <Link
                     to={`/${item === "Home" ? "" : item.toLowerCase().replace(/ /g, "-")}`}
-                    className="text-sm text-hero-foreground/50 hover:text-primary transition-colors duration-300"
+                    className="text-sm text-white/40 hover:text-white transition-colors duration-300"
                   >
                     {item}
                   </Link>
