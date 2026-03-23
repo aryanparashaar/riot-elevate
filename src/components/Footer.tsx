@@ -28,7 +28,7 @@ const Footer = () => {
                   key={i}
                   href="#"
                   whileHover={{ scale: 1.1, y: -2 }}
-                  className="w-9 h-9 rounded-lg bg-white/[0.04] border border-white/[0.06] flex items-center justify-center hover:bg-primary/20 hover:border-primary/30 hover:text-primary transition-colors duration-300"
+                  className="w-9 h-9 rounded-lg bg-white/[0.05] border border-white/[0.08] flex items-center justify-center text-white/50 hover:bg-white/[0.1] hover:border-white/[0.15] hover:text-white transition-all duration-300"
                 >
                   <Icon size={16} />
                 </motion.a>
