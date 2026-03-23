@@ -59,7 +59,7 @@ const Footer = () => {
             <ul className="space-y-2.5">
               {["CRM Solutions", "Marketplace Management", "Revenue Analytics", "Growth Engineering", "Process Automation", "Backend Operations"].map((item) => (
                 <li key={item}>
-                  <span className="text-sm text-hero-foreground/50">{item}</span>
+                  <span className="text-sm text-white/40">{item}</span>
                 </li>
               ))}
             </ul>
