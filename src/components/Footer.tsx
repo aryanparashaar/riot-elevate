@@ -70,8 +70,8 @@ const Footer = () => {
             <h4 className="font-display font-semibold text-sm mb-5 uppercase tracking-wider text-white/25">Contact</h4>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
-                <Mail size={16} className="mt-0.5 text-primary shrink-0" />
-                <span className="text-sm text-hero-foreground/50">hello@riotecommerce.com</span>
+                <Mail size={16} className="mt-0.5 text-white/60 shrink-0" />
+                <span className="text-sm text-white/40">hello@riotecommerce.com</span>
               </li>
               <li className="flex items-start gap-3">
                 <Phone size={16} className="mt-0.5 text-primary shrink-0" />
