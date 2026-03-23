@@ -91,7 +91,7 @@ const Navbar = () => {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-            className="lg:hidden bg-hero/98 backdrop-blur-xl border-t border-white/[0.06] overflow-hidden"
+            className="lg:hidden bg-hero backdrop-blur-2xl border-t border-white/[0.08] overflow-hidden"
           >
             <div className="px-4 py-4 space-y-1">
               {navLinks.map((link, i) => (
