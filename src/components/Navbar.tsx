@@ -33,7 +33,6 @@ const Navbar = () => {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled ? "bg-hero/98 backdrop-blur-2xl border-b border-white/[0.08] shadow-2xl shadow-black/40" : "bg-transparent"
       }`}
-      }`}
     >
       <div className="container-wide flex items-center justify-between h-16 sm:h-20 px-4 sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center">
