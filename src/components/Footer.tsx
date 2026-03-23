@@ -19,7 +19,7 @@ const Footer = () => {
             <Link to="/" className="flex items-center mb-4">
               <img src={logo} alt="RIOT Ecommerce" className="h-14 w-auto invert" />
             </Link>
-            <p className="text-sm text-hero-foreground/50 leading-relaxed mb-6">
+            <p className="text-sm text-white/40 leading-relaxed mb-6">
               Engineering high-performance ecommerce operations for brands that refuse to settle for average.
             </p>
             <div className="flex gap-3">
