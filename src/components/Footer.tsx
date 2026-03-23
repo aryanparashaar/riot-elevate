@@ -85,13 +85,13 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-14 pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-hero-foreground/30">
+        <div className="mt-14 pt-8 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-white/25">
             © {new Date().getFullYear()} RIOT Ecommerce. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <a href="#" className="text-xs text-hero-foreground/30 hover:text-hero-foreground/50 transition-colors duration-300">Privacy Policy</a>
-            <a href="#" className="text-xs text-hero-foreground/30 hover:text-hero-foreground/50 transition-colors duration-300">Terms of Service</a>
+            <a href="#" className="text-xs text-white/25 hover:text-white/50 transition-colors duration-300">Privacy Policy</a>
+            <a href="#" className="text-xs text-white/25 hover:text-white/50 transition-colors duration-300">Terms of Service</a>
           </div>
         </div>
       </div>

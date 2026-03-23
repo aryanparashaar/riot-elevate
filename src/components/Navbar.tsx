@@ -104,10 +104,10 @@ const Navbar = () => {
                   <Link
                     to={link.to}
                     onClick={() => setOpen(false)}
-                    className={`block px-3 py-2.5 rounded-md text-sm font-medium transition-colors ${
+                    className={`block px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${
                       location.pathname === link.to
-                        ? "text-primary bg-white/5"
-                        : "text-hero-foreground/60 hover:text-hero-foreground"
+                        ? "text-white bg-white/[0.08]"
+                        : "text-white/50 hover:text-white hover:bg-white/[0.04]"
                     }`}
                   >
                     {link.label}
