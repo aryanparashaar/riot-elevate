@@ -5,10 +5,12 @@ import logo from "@/assets/logo.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#0a0a0a] text-hero-foreground relative overflow-hidden">
+    <footer className="bg-hero text-white relative overflow-hidden">
+      {/* Top border accent */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.12] to-transparent" />
       {/* Subtle glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[200px] opacity-[0.04]"
-        style={{ background: "radial-gradient(ellipse, hsl(var(--primary)), transparent 70%)" }} />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[150px] opacity-[0.03]"
+        style={{ background: "radial-gradient(ellipse, hsl(0 0% 100%), transparent 70%)" }} />
 
       <div className="container-wide section-padding relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
