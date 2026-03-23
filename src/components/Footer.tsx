@@ -78,8 +78,8 @@ const Footer = () => {
                 <span className="text-sm text-white/40">+1 (555) 123-4567</span>
               </li>
               <li className="flex items-start gap-3">
-                <MapPin size={16} className="mt-0.5 text-primary shrink-0" />
-                <span className="text-sm text-hero-foreground/50">Global Operations — Remote First</span>
+                <MapPin size={16} className="mt-0.5 text-white/60 shrink-0" />
+                <span className="text-sm text-white/40">Global Operations — Remote First</span>
               </li>
             </ul>
           </div>
