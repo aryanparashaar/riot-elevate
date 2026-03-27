@@ -1,9 +1,15 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Linkedin, Twitter, Instagram, Mail, Phone, MapPin } from "lucide-react";
+import { Linkedin, Twitter, Instagram, Mail, Phone, MapPin, Facebook } from "lucide-react";
 import logo from "@/assets/logo.png";
 
 const Footer = () => {
+
+  const socialLinks = [
+  { icon: Linkedin, url: "https://www.linkedin.com/company/riot-ecommerce/?viewAsMember=true" },
+  { icon: Instagram, url: "https://www.instagram.com/riotecommerce/" },
+  { icon: Facebook, url: "https://www.facebook.com/RIOTecommerce" }
+];
   return (
     <footer className="bg-hero text-white relative overflow-hidden">
       {/* Top border accent */}
@@ -28,7 +34,7 @@ const Footer = () => {
                   key={i}
                   href="#"
                   whileHover={{ scale: 1.1, y: -2 }}
-                  className="w-9 h-9 rounded-lg bg-white/[0.05] border border-white/[0.08] flex items-center justify-center text-white/50 hover:bg-white/[0.1] hover:border-white/[0.15] hover:text-white transition-all duration-300"
+                  className="w-9 h-9 rounded-lg bg-white/[0.04] border border-white/[0.06] flex items-center justify-center hover:bg-primary/20 hover:border-primary/30 hover:text-primary transition-colors duration-300"
                 >
                   <Icon size={16} />
                 </motion.a>
@@ -70,16 +76,16 @@ const Footer = () => {
             <h4 className="font-display font-semibold text-sm mb-5 uppercase tracking-wider text-white/25">Contact</h4>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
-                <Mail size={16} className="mt-0.5 text-white/60 shrink-0" />
-                <span className="text-sm text-white/40">hello@riotecommerce.com</span>
+                <Mail size={16} className="mt-0.5 text-primary shrink-0" />
+                <span className="text-sm text-hero-foreground/50">hello@riotecommerce.com</span>
               </li>
               <li className="flex items-start gap-3">
-                <Phone size={16} className="mt-0.5 text-white/60 shrink-0" />
-                <span className="text-sm text-white/40">+1 (555) 123-4567</span>
+                <Phone size={16} className="mt-0.5 text-primary shrink-0" />
+                <span className="text-sm text-hero-foreground/50">+1 (555) 123-4567</span>
               </li>
               <li className="flex items-start gap-3">
-                <MapPin size={16} className="mt-0.5 text-white/60 shrink-0" />
-                <span className="text-sm text-white/40">Global Operations — Remote First</span>
+                <MapPin size={16} className="mt-0.5 text-primary shrink-0" />
+                <span className="text-sm text-hero-foreground/50">Global Operations — Remote First</span>
               </li>
             </ul>
           </div>

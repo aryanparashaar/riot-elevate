@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/Riot.png";
 
 const navLinks = [
   { label: "Home", to: "/" },
@@ -31,12 +31,14 @@ const Navbar = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "bg-hero/98 backdrop-blur-2xl border-b border-white/[0.08] shadow-2xl shadow-black/40" : "bg-transparent"
-      }`}
+  scrolled
+  ? "bg-gray-50 border-b border-gray-200 shadow-sm"
+  : "bg-transparent"
+}`}
     >
       <div className="container-wide flex items-center justify-between h-16 sm:h-20 px-4 sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center">
-          <img src={logo} alt="RIOT Ecommerce" className="h-12 sm:h-14 w-auto invert" />
+          <img src={logo} alt="RIOT Ecommerce" className="h-12 w-auto" />
         </Link>
 
         {/* Desktop */}
@@ -45,10 +47,10 @@ const Navbar = () => {
             <Link
               key={link.to}
               to={link.to}
-              className={`relative px-3.5 py-2 text-sm font-medium rounded-lg transition-all duration-300 ${
+              className={`relative px-3 py-2 text-sm font-medium rounded-md transition-colors duration-300 ${
                 location.pathname === link.to
-                  ? "text-white bg-white/[0.08]"
-                  : "text-white/50 hover:text-white hover:bg-white/[0.04]"
+                  ? "text-primary"
+                  : "text-gray-600 hover:text-black"
               }`}
             >
               {link.label}
@@ -90,7 +92,7 @@ const Navbar = () => {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-            className="lg:hidden bg-hero backdrop-blur-2xl border-t border-white/[0.08] overflow-hidden"
+            className="lg:hidden bg-hero/98 backdrop-blur-xl border-t border-white/[0.06] overflow-hidden"
           >
             <div className="px-4 py-4 space-y-1">
               {navLinks.map((link, i) => (
@@ -103,10 +105,10 @@ const Navbar = () => {
                   <Link
                     to={link.to}
                     onClick={() => setOpen(false)}
-                    className={`block px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${
+                    className={`block px-3 py-2.5 rounded-md text-sm font-medium transition-colors ${
                       location.pathname === link.to
-                        ? "text-white bg-white/[0.08]"
-                        : "text-white/50 hover:text-white hover:bg-white/[0.04]"
+                        ? "text-primary bg-white/5"
+                        : "text-gray-600 hover:text-black"
                     }`}
                   >
                     {link.label}

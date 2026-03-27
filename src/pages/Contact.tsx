@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { z } from "zod";
 import AnimatedSection from "@/components/AnimatedSection";
 import { Mail, Phone, MapPin, Send, CheckCircle } from "lucide-react";
+import emailjs from "emailjs-com";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
@@ -15,11 +16,11 @@ const contactSchema = z.object({
 type ContactForm = z.infer<typeof contactSchema>;
 
 const services = [
-  "CRM & Customer Experience",
-  "Marketplace Management",
-  "Revenue Analytics",
-  "Intelligent Automation",
-  "Growth Engineering",
+  "Ecommerce operations & Backend Support",
+  "Brand Building & Growth",
+  "Customer Support & Virtual Assistance",
+  "Website & Digital Presence Optimization",
+  "Digital Marketing & Conversion Optimization",
   "Backend Operations",
   "Other",
 ];
@@ -29,9 +30,11 @@ const Contact = () => {
   const [errors, setErrors] = useState<Partial<Record<keyof ContactForm, string>>>({});
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     const result = contactSchema.safeParse(form);
+
     if (!result.success) {
       const fieldErrors: Partial<Record<keyof ContactForm, string>> = {};
       result.error.errors.forEach((err) => {
@@ -41,8 +44,29 @@ const Contact = () => {
       setErrors(fieldErrors);
       return;
     }
+
     setErrors({});
-    setSubmitted(true);
+
+    // ✅ EMAILJS INTEGRATION
+    emailjs.send(
+      "service_6qwwg1p",        // service ID
+      "template_ug5rz49",         // template ID
+      {
+        name: form.name,
+        email: form.email,
+        company: form.company,
+        service: form.service,
+        message: form.message,
+      },
+      "oFMBRQ3ezqWkoSoeU"         // public key
+    )
+      .then(() => {
+        setSubmitted(true); // show success UI
+      })
+      .catch((error) => {
+        console.error("Email error:", error);
+        alert("Failed to send message");
+      });
   };
 
   const handleChange = (field: keyof ContactForm, value: string) => {
@@ -79,9 +103,9 @@ const Contact = () => {
               <h2 className="text-2xl font-display font-bold text-foreground mb-6">Get In Touch</h2>
               <div className="space-y-5 mb-8">
                 {[
-                  { icon: Mail, label: "Email", value: "hello@riotecommerce.com" },
-                  { icon: Phone, label: "Phone", value: "+1 (555) 123-4567" },
-                  { icon: MapPin, label: "Location", value: "Global Operations — Remote First" },
+                  { icon: Mail, label: "Email", value: "support@riotecommerce.com" },
+                  { icon: Phone, label: "Phone", value: "+91-99100695137" },
+                  { icon: MapPin, label: "Location", value: "629, 6th Floor, Eros Cooperate Park, Sector 2, 122051" },
                 ].map((item, i) => (
                   <motion.div
                     key={i}
