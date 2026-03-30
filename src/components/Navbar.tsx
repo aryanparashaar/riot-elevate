@@ -12,6 +12,7 @@ const navLinks = [
   { label: "Our Experts", to: "/experts" },
   { label: "Blog", to: "/blog" },
   { label: "FAQ", to: "/faq" },
+  { label: "Careers", to: "/careers" },
 ];
 
 const Navbar = () => {
