@@ -105,7 +105,7 @@ const Contact = () => {
                 {[
                   { icon: Mail, label: "Email", value: "support@riotecommerce.com" },
                   { icon: Phone, label: "Phone", value: "+91-99100695137" },
-                  { icon: MapPin, label: "Location", value: "629, 6th Floor, Eros Cooperate Park, Sector 2, 122051" },
+                  { icon: MapPin, label: "Location", value: "1129, 11th Floor, Eros Cooperate Park, Sector 2, 122051" },
                 ].map((item, i) => (
                   <motion.div
                     key={i}

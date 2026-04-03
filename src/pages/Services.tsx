@@ -73,32 +73,126 @@ const OpsIllustration = () => (
   </svg>
 );
 
-const BrandIllustration = () => (
-  <svg viewBox="0 0 400 280" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#8b5cf6"/>
-        <stop offset="100%" stopColor="#3b82f6"/>
-      </linearGradient>
-    </defs>
-    {[
-      { x:30, y:40, w:75, h:100, color:"#3b82f6", label:"Primary" },
-      { x:120, y:40, w:75, h:100, color:"#0a0d14", label:"Dark" },
-      { x:210, y:40, w:75, h:100, color:"#f59e0b", label:"Accent" },
-      { x:300, y:40, w:75, h:100, color:"#f0f4ff", label:"Light" },
-    ].map((s, i) => (
-      <g key={i}>
-        <rect x={s.x} y={s.y} width={s.w} height={s.h} rx="14" fill={s.color} stroke={i===3?"#cbd5e1":"none"} strokeWidth="1"/>
-        <text x={s.x+s.w/2} y={s.y+s.h+16} textAnchor="middle" fontSize="10" fill="#64748b" fontWeight="600">{s.label}</text>
-      </g>
-    ))}
-    <rect x="30" y="178" width="340" height="72" rx="14" fill="#f8faff" stroke="#e2e8f0" strokeWidth="1.5"/>
-    <text x="55" y="210" fontSize="22" fontWeight="800" fill="#0a0d14">Brand Identity</text>
-    <text x="55" y="230" fontSize="10" fill="#94a3b8">Typography · Colors · Visual Elements</text>
-    <circle cx="348" cy="214" r="22" fill="url(#bg1)"/>
-    <text x="348" y="221" textAnchor="middle" fontSize="13" fill="white" fontWeight="800">re</text>
-  </svg>
-);
+const BrandIllustration = () => {
+  const [counts, setCounts] = useState({ followers: 0, revenue: 0, engagement: 0 });
+  const [barWidths, setBarWidths] = useState({ awareness: 0, trust: 0, loyalty: 0, recall: 0 });
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
+
+  useEffect(() => {
+    if (!inView) return;
+    const targets = { awareness: 85, trust: 78, loyalty: 91, recall: 72 };
+    const countTargets = { followers: 220, revenue: 35, engagement: 55 };
+    const dur = 1400;
+    const start = Date.now();
+    const tick = () => {
+      const p = Math.min((Date.now() - start) / dur, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      setBarWidths({
+        awareness: Math.round(targets.awareness * ease),
+        trust: Math.round(targets.trust * ease),
+        loyalty: Math.round(targets.loyalty * ease),
+        recall: Math.round(targets.recall * ease),
+      });
+      setCounts({
+        followers: Math.round(countTargets.followers * ease),
+        revenue: Math.round(countTargets.revenue * ease),
+        engagement: Math.round(countTargets.engagement * ease),
+      });
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    tick();
+  }, [inView]);
+
+  const bars = [
+    { key: "awareness", label: "Awareness", color: "#3b82f6" },
+    { key: "trust",     label: "Trust",     color: "#f59e0b" },
+    { key: "loyalty",   label: "Loyalty",   color: "#10b981" },
+    { key: "recall",    label: "Recall",    color: "#8b5cf6" },
+  ];
+
+  const tags = [
+    { label: "Logo design",    color: "#3b82f6" },
+    { label: "Typography",     color: "#f59e0b" },
+    { label: "Visual identity",color: "#10b981" },
+    { label: "Social kit",     color: "#8b5cf6" },
+  ];
+
+  return (
+    <div ref={ref} className="w-full h-full flex flex-col gap-4 p-1 text-[#0a0d14]">
+
+      {/* Before / After */}
+      <div className="flex gap-3 items-stretch">
+        <div className="flex-1 rounded-2xl px-4 py-3 bg-red-50 border border-red-100">
+          <p className="text-[10px] font-black uppercase tracking-widest text-red-400 mb-1">Before</p>
+          <p className="text-sm font-bold text-[#0a0d14]">Generic Brand</p>
+          <p className="text-[11px] text-gray-400 mt-0.5">No identity · Low trust · Price wars</p>
+        </div>
+        <div className="flex items-center text-gray-300 text-lg font-light">→</div>
+        <div className="flex-1 rounded-2xl px-4 py-3 bg-emerald-50 border border emerald-100">
+          <p className="text-[10px] font-black uppercase tracking-widest text-emerald-500 mb-1">After</p>
+          <p className="text-sm font-bold text-[#0a0d14]">RIOT-Built Brand</p>
+          <p className="text-[11px] text-gray-400 mt-0.5">Loyal customers · Premium pricing</p>
+        </div>
+      </div>
+
+      {/* Recognition Bars */}
+      <div className="rounded-2xl border border-gray-100 bg-white px-4 py-3 flex flex-col gap-2">
+        <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1">Brand recognition score</p>
+        {bars.map((b) => (
+          <div key={b.key} className="flex items-center gap-2">
+            <span className="text-[11px] text-gray-500 w-20 shrink-0">{b.label}</span>
+            <div className="flex-1 h-2 rounded-full bg-gray-100 overflow-hidden">
+              <div
+                className="h-full rounded-full transition-all duration-300"
+                style={{ width: `${barWidths[b.key as keyof typeof barWidths]}%`, background: b.color }}
+              />
+            </div>
+            <span className="text-[11px] font-bold w-8 text-right" style={{ color: b.color }}>
+              {barWidths[b.key as keyof typeof barWidths]}%
+            </span>
+          </div>
+        ))}
+      </div>
+
+      {/* Stats row */}
+      <div className="flex gap-3">
+        {[
+          { id: "followers", val: counts.followers, suffix: "K", label: "Followers", color: "#3b82f6" },
+          { id: "revenue",   val: counts.revenue,   suffix: "%", label: "Revenue lift", color: "#10b981", prefix: "+" },
+          { id: "engagement",val: counts.engagement,suffix: "%", label: "Engagement", color: "#f59e0b", prefix: "+" },
+        ].map((s) => (
+          <div key={s.id} className="flex-1 rounded-2xl bg-white border border-gray-100 px-3 py-3 text-center">
+            <p className="text-lg font-black leading-none" style={{ color: s.color }}>
+              {s.prefix ?? ""}{s.val}{s.suffix}
+            </p>
+            <p className="text-[10px] text-gray-400 mt-1">{s.label}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* Palette + tags */}
+      <div className="rounded-2xl border border-gray-100 bg-white px-4 py-3">
+        <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">Brand identity system</p>
+        <div className="flex items-center gap-2 mb-3">
+          {["#3b82f6","#0a0d14","#f59e0b","#f1f5f9"].map((c, i) => (
+            <div key={i} className="w-7 h-7 rounded-full border border-gray-200" style={{ background: c }} />
+          ))}
+          <span className="text-[11px] text-gray-400 ml-1">Color palette</span>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {tags.map((t, i) => (
+            <span key={i} className="text-[11px] font-bold px-3 py-1 rounded-full border"
+              style={{ color: t.color, borderColor: `${t.color}40`, background: `${t.color}10` }}>
+              {t.label}
+            </span>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  );
+};
 
 const SupportIllustration = () => (
   <svg viewBox="0 0 400 280" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
@@ -434,7 +528,7 @@ const Services = () => {
                       whileHover={{ scale:1.01 }}
                       transition={{ type:"spring", stiffness:200 }}
                     >
-                      <div className="p-6 aspect-[4/3]">
+                      <div className="p-6">
                         <Illustration />
                       </div>
                       {/* shimmer */}

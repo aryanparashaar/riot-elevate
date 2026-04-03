@@ -143,7 +143,7 @@ const ServiceCard = ({
         <div
           className="absolute inset-0"
           style={{
-            background: `linear-gradient(to bottom, ${service.accent}22 0%, rgba(255,255,255,0.0) 40%, rgba(255,255,255,0.95) 100%)`,
+            background: `linear-gradient(to bottom, ${service.accent}33 0%, transparent 50%)`,
           }}
         />
         {/* Tag badge pinned top-left */}
@@ -249,9 +249,9 @@ const ServicesSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-14"
         >
-          <span className="inline-block px-4 py-1.5 text-xs font-bold tracking-[0.2em] uppercase rounded-full bg-blue-50 text-blue-600 border border-blue-100 mb-4">
+          {/* <span className="inline-block px-4 py-1.5 text-xs font-bold tracking-[0.2em] uppercase rounded-full bg-blue-50 text-blue-600 border border-blue-100 mb-4">
             What We Do
-          </span>
+          </span> */}
           <h2 className="text-4xl sm:text-5xl font-extrabold text-[#0a0d14] tracking-tight mb-4 leading-tight">
             What we offer for{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-cyan-400">

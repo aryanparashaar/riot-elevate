@@ -262,32 +262,66 @@ const StatsSection = () => {
           ))}
         </div>
 
-        {/* Bottom trust bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.7 }}
-          className="mt-12 flex flex-wrap items-center justify-center gap-8 pt-10 border-t border-gray-100"
-        >
-          {[
-            { emoji: "🌍", text: "15+ Countries" },
-            { emoji: "⚡", text: "24/7 Operations" },
-            { emoji: "🔒", text: "99% Error-Free" },
-            { emoji: "📈", text: "70% Avg. Efficiency Gain" },
-          ].map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={inView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ delay: 0.8 + i * 0.07, duration: 0.4 }}
-              className="flex items-center gap-2.5 text-sm text-gray-500 font-medium"
-            >
-              <span className="text-lg">{item.emoji}</span>
-              {item.text}
-            </motion.div>
-          ))}
-        </motion.div>
+        {/* Bottom trust bar - Infinite Marquee */}
+
       </div>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6, delay: 0.7 }}
+        className="mt-12 pt-10 border-t border-gray-100 overflow-hidden"
+      >
+        <div className="relative flex">
+          {/* Left fade */}
+          <div className="absolute left-0 top-0 h-full w-16 z-10 pointer-events-none"
+            style={{ background: "linear-gradient(to right, white, transparent)" }} />
+          {/* Right fade */}
+          <div className="absolute right-0 top-0 h-full w-16 z-10 pointer-events-none"
+            style={{ background: "linear-gradient(to left, white, transparent)" }} />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.7 }}
+            className="mt-12 pt-10 border-t border-gray-100 overflow-hidden"
+          >
+            <div className="relative flex">
+              {/* Left fade */}
+              <div className="absolute left-0 top-0 h-full w-24 z-10 pointer-events-none"
+                style={{ background: "linear-gradient(to right, white, transparent)" }} />
+              {/* Right fade */}
+              <div className="absolute right-0 top-0 h-full w-24 z-10 pointer-events-none"
+                style={{ background: "linear-gradient(to left, white, transparent)" }} />
+
+              <motion.div
+                className="flex gap-10 shrink-0"
+                animate={{ x: ["0%", "-50%"] }}
+                transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+              >
+                {[...Array(2)].flatMap((_, arrayIndex) =>
+                  [
+                    { emoji: "🌍", text: "15+ Countries", color: "#3b82f6", bg: "rgba(59,130,246,0.08)", border: "rgba(59,130,246,0.2)" },
+                    { emoji: "⚡", text: "24/7 Operations", color: "#f59e0b", bg: "rgba(245,158,11,0.08)", border: "rgba(245,158,11,0.2)" },
+                    { emoji: "🔒", text: "99% Error-Free", color: "#10b981", bg: "rgba(16,185,129,0.08)", border: "rgba(16,185,129,0.2)" },
+                    { emoji: "📈", text: "70% Avg. Efficiency Gain", color: "#8b5cf6", bg: "rgba(139,92,246,0.08)", border: "rgba(139,92,246,0.2)" },
+                  ].map((item, i) => (
+                    <div
+                      key={`${arrayIndex}-${i}`}
+                      className="flex items-center gap-3 px-6 py-3 rounded-full shrink-0"
+                      style={{ background: item.bg, border: `1.5px solid ${item.border}` }}
+                    >
+                      <span className="text-2xl">{item.emoji}</span>
+                      <span className="text-base font-extrabold tracking-tight whitespace-nowrap" style={{ color: item.color }}>
+                        {item.text}
+                      </span>
+                    </div>
+                  ))
+                )}
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+      </motion.div>
     </section>
   );
 };

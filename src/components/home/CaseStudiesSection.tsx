@@ -123,10 +123,13 @@ const cases = [
 /* ─── RESULT PILL ───────────────────────────────────────────────── */
 const ResultPill = ({ label, value, color }: { label: string; value: string; color: string }) => (
   <div
-    className="flex flex-col items-center px-4 py-3 rounded-2xl border flex-1"
+    className="flex flex-col items-center px-2 py-3 rounded-2xl border flex-1 min-w-0"
     style={{ background: `${color}0d`, borderColor: `${color}25` }}
   >
-    <span className="text-lg font-black leading-none mb-1" style={{ color }}>
+    <span
+      className="text-base font-black leading-none mb-1 whitespace-nowrap"
+      style={{ color }}
+    >
       {value}
     </span>
     <span className="text-[10px] text-gray-400 font-medium text-center leading-tight">
