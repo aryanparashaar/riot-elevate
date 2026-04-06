@@ -320,7 +320,7 @@ const services = [
 ];
 
 const stats = [
-  { value: 8, suffix: "+", label: "Years Experience", icon: Star },
+  { value: 12, suffix: "+", label: "Years Experience", icon: Star },
   { value: 60, suffix: "+", label: "Clients Served", icon: Users },
   { value: 99, suffix: "%", label: "Error-Free Rate", icon: Zap },
   { value: 100, suffix: "%", label: "Client Satisfaction", icon: Sparkles },

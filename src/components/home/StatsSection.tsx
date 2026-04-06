@@ -30,7 +30,7 @@ const stats = [
     iconColor: "#f43f5e",
   },
   {
-    value: 8,
+    value: 12,
     suffix: "+",
     label: "Years of Excellence",
     description: "Deep domain expertise",

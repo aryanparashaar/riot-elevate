@@ -77,11 +77,13 @@ const visionStats = [
 ];
 
 const storyMilestones = [
-  { year: "2016", event: "Founded with a single mission: make ecommerce ops effortless" },
-  { year: "2018", event: "Crossed 10,000 support tickets resolved; first international client" },
-  { year: "2020", event: "Expanded to 10 countries; launched automation playbook" },
-  { year: "2023", event: "1M+ tickets resolved; 150+ brands transformed globally" },
-  { year: "2024", event: "15+ markets served; new AI-assisted operations rollout" },
+  { year: "2014", event: "Founded with a single mission: make ecommerce ops effortless" },
+  { year: "2016", event: "Crossed 10,000 support tickets resolved; landed our first international client" },
+  { year: "2018", event: "Expanded to 10 countries; launched our signature automation playbook" },
+  { year: "2020", event: "1M+ tickets resolved; 150+ brands transformed globally" },
+  { year: "2022", event: "Integrated AI-assisted operations across client workflows; crossed 15+ active markets" },
+  { year: "2024", event: "Surpassed 60+ active clients; deepened presence across North America, Europe & Southeast Asia with dedicated account teams" },
+  { year: "2026", event: "Moved into a brand-new office, expanded our team, and launched a fully redesigned brand — built to match the ambition of what's next" },
 ];
 
 const quickLinks = [
@@ -193,7 +195,7 @@ const About = () => {
 
             <p className="text-lg sm:text-xl text-white/45 max-w-2xl mx-auto leading-relaxed mb-10">
               We take the operational complexity off your plate — from website creation to
-              backend management — so you can focus entirely on growing your brand.
+              backend management, so you can focus entirely on growing your brand.
             </p>
 
             {/* Trust badges */}
@@ -499,32 +501,54 @@ const About = () => {
             {/* Timeline */}
             <AnimatedSection variant="fadeLeft" delay={0.05}>
               <div className="relative pl-8">
-                {/* Vertical line */}
-                <div className="absolute left-[11px] top-2 bottom-2 w-[2px] bg-gradient-to-b from-blue-600 via-blue-400/50 to-transparent rounded-full" />
+                {/* Vertical line — full height through all 7 items */}
+                <div className="absolute left-[11px] top-2 bottom-2 w-[2px] bg-gradient-to-b from-blue-600 via-blue-400/40 to-blue-300/20 rounded-full" />
 
-                <div className="space-y-8">
-                  {storyMilestones.map((m, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, x: -16 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true, margin: "-30px" }}
-                      transition={{ delay: i * 0.1, duration: 0.45, ease: "easeOut" }}
-                      className="relative flex gap-5"
-                    >
-                      {/* Dot */}
-                      <div className="absolute -left-[25px] top-1 w-4 h-4 rounded-full bg-blue-600 border-2 border-[#f8faff] shrink-0 shadow-[0_0_0_3px_rgba(59,130,246,0.2)]" />
+                <div className="space-y-7">
+                  {storyMilestones.map((m, i) => {
+                    const isCurrent = m.year === "2026";
+                    return (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, x: -16 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, margin: "-30px" }}
+                        transition={{ delay: i * 0.09, duration: 0.45, ease: "easeOut" }}
+                        className="relative flex gap-5"
+                      >
+                        {/* Dot — larger + pulsing ring for 2026 */}
+                        {isCurrent ? (
+                          <div className="absolute -left-[27px] top-0.5 shrink-0">
+                            <div className="w-5 h-5 rounded-full bg-blue-600 border-2 border-[#f8faff] shadow-[0_0_0_4px_rgba(59,130,246,0.25)]" />
+                            {/* Pulse ring */}
+                            <motion.div
+                              animate={{ scale: [1, 1.7], opacity: [0.5, 0] }}
+                              transition={{ duration: 1.6, repeat: Infinity, ease: "easeOut" }}
+                              className="absolute inset-0 rounded-full bg-blue-500"
+                            />
+                          </div>
+                        ) : (
+                          <div className="absolute -left-[25px] top-1 w-4 h-4 rounded-full bg-blue-600 border-2 border-[#f8faff] shrink-0 shadow-[0_0_0_3px_rgba(59,130,246,0.15)]" />
+                        )}
 
-                      <div>
-                        <span className="text-[10px] font-black text-blue-600 tracking-[0.2em] uppercase">
-                          {m.year}
-                        </span>
-                        <p className="text-[#0a0d14] text-sm font-medium leading-snug mt-0.5">
-                          {m.event}
-                        </p>
-                      </div>
-                    </motion.div>
-                  ))}
+                        <div className={isCurrent ? "rounded-xl bg-blue-600 px-4 py-3 -ml-1 w-full" : ""}>
+                          <div className="flex items-center gap-2 mb-0.5">
+                            <span className={`text-[10px] font-black tracking-[0.2em] uppercase ${isCurrent ? "text-blue-200" : "text-blue-600"}`}>
+                              {m.year}
+                            </span>
+                            {isCurrent && (
+                              <span className="px-2 py-0.5 rounded-full bg-white/20 text-white text-[9px] font-black tracking-widest uppercase">
+                                Now
+                              </span>
+                            )}
+                          </div>
+                          <p className={`text-sm font-medium leading-snug ${isCurrent ? "text-white" : "text-[#0a0d14]"}`}>
+                            {m.event}
+                          </p>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
                 </div>
               </div>
             </AnimatedSection>

@@ -26,7 +26,7 @@ const CTASection = () => {
             Ready to <span className="text-gradient">Outperform</span> Your Competition?
           </h2>
           <p className="text-base sm:text-lg text-hero-foreground/50 leading-relaxed mb-10">
-            Book a free strategy call. In 30 minutes, we'll map out exactly how to unlock your next phase of growth.
+            Book a free strategy call. We'll map out exactly how to unlock your next phase of growth.
           </p>
           <Link
             to="/contact"

@@ -11,7 +11,8 @@ import customerSupport from "/CustomerSupport.jpg";
 import digitalPresence from "/Website.jpg";
 import ecommerceOps from "/Ecommerceoperation.jpg";
 import brandGrowth from "/BrandBuilding.jpg";
-
+import marketplace from "/MarketManagement.jpg";
+import digitalmarketing from "/Digitalmarketing.jpg";
 const services = [
   {
     icon: Headphones,
@@ -78,7 +79,7 @@ const services = [
     title: "Marketplace Management",
     description:
       "End-to-end Amazon, Walmart, and multi-channel management — from listing optimization to advertising and compliance.",
-    image: ecommerceOps,
+    image: marketplace,
     accent: "#ef4444",
     gradient: "from-red-500 to-rose-400",
     bg: "rgba(239,68,68,0.07)",
@@ -93,7 +94,7 @@ const services = [
     title: "Digital Marketing & Conversion",
     description:
       "Data-backed growth strategies that consistently deliver 3–5x ROI through conversion optimization, retention, and market expansion.",
-    image: brandGrowth,
+    image: digitalmarketing,
     accent: "#06b6d4",
     gradient: "from-cyan-500 to-blue-400",
     bg: "rgba(6,182,212,0.07)",
