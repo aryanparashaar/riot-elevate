@@ -15,8 +15,15 @@ import {
   Zap,
   CheckCircle2,
 } from "lucide-react";
+import { usePageLoader } from "@/components/skeleton/usePageLoader";
+import {
+  HomeSkeleton,
+  PageFadeIn,
+} from "@/components/skeleton/PageSkeletons";
 
 /* ─── DATA ──────────────────────────────────────────────────────────────── */
+
+
 
 const stats = [
   { value: "5,000+", label: "Happy Customers" },
@@ -107,6 +114,8 @@ const quickLinks = [
   },
 ];
 
+
+
 /* ─── SUB-COMPONENTS ────────────────────────────────────────────────────── */
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
@@ -140,6 +149,8 @@ function SectionHeading({
 /* ─── PAGE ──────────────────────────────────────────────────────────────── */
 
 const About = () => {
+  const { loading } = usePageLoader("about");
+
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -148,8 +159,10 @@ const About = () => {
   const heroBgY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
+if (loading) return <HomeSkeleton />;
+
   return (
-    <>
+    <PageFadeIn>
       {/* ─── HERO ───────────────────────────────────────────────────── */}
       <section
         ref={heroRef}
@@ -621,7 +634,7 @@ const About = () => {
       </section>
 
       <CTASection />
-    </>
+      </PageFadeIn>
   );
 };
 

@@ -2,6 +2,11 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AnimatedSection from "@/components/AnimatedSection";
 import { ChevronDown } from "lucide-react";
+import { usePageLoader } from "@/components/skeleton/usePageLoader";
+import {
+  HomeSkeleton,
+  PageFadeIn,
+} from "@/components/skeleton/PageSkeletons";
  
 const faqs = [
   { q: "What is RIOT Ecommerce, and how can you help my business?", a: "RIOT Ecommerce is a specialized ecommerce business support company that provides backend management, CRM solutions, order processing, inventory management, customer support solutions, Website development and management, Digital marketing and Graphic designing. We help businesses scale efficiently by streamlining operations and enhancing customer satisfaction." },
@@ -25,6 +30,7 @@ const faqs = [
 ];
  
 const FAQ = () => {
+  const { loading } = usePageLoader("faq");
   const [openIndex, setOpenIndex] = useState<number | null>(0);
  
   return (
