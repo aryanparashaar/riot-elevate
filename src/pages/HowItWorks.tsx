@@ -23,44 +23,44 @@ import {
 
 const phases = [
   { n: "01", title: "Build Your Foundation", sub: "Platform, brand & design", accent: "bg-[#0a0d14] border-blue-900/40" },
-  { n: "02", title: "Define Your Product",   sub: "Name, pricing & listing",  accent: "bg-blue-600" },
-  { n: "03", title: "Source Your Product",   sub: "Vendors, stock & supply",  accent: "bg-[#111827] border-blue-800/40" },
-  { n: "04", title: "Launch & Scale",        sub: "Traffic, ops & growth",    accent: "bg-blue-500" },
+  { n: "02", title: "Define Your Product", sub: "Name, pricing & listing", accent: "bg-blue-600" },
+  { n: "03", title: "Source Your Product", sub: "Vendors, stock & supply", accent: "bg-[#111827] border-blue-800/40" },
+  { n: "04", title: "Launch & Scale", sub: "Traffic, ops & growth", accent: "bg-blue-500" },
 ];
 
 const defineSteps = [
-  { title: "Product Name",        desc: "Choose a clear, keyword-rich product name that defines your item and helps customers find it easily online.", icon: Tag },
+  { title: "Product Name", desc: "Choose a clear, keyword-rich product name that defines your item and helps customers find it easily online.", icon: Tag },
   { title: "Product Description", desc: "Write a detailed and engaging product description highlighting features, benefits, and usage to convert visitors.", icon: FileText },
-  { title: "Product Pricing",     desc: "Set competitive and transparent pricing that reflects product value. Consider market trends to boost sales.", icon: DollarSign },
-  { title: "Product Category",    desc: "Organize items into accurate product categories to enhance user navigation and SEO indexing.", icon: Grid3X3 },
+  { title: "Product Pricing", desc: "Set competitive and transparent pricing that reflects product value. Consider market trends to boost sales.", icon: DollarSign },
+  { title: "Product Category", desc: "Organize items into accurate product categories to enhance user navigation and SEO indexing.", icon: Grid3X3 },
 ];
 
 const sourceSteps = [
-  { n: "01", title: "Product Listing",    desc: "Optimised listings crafted for discoverability and conversion across every major platform." },
-  { n: "02", title: "Vendor Sourcing",    desc: "We identify and vet reliable suppliers that match your product vision and quality standards." },
-  { n: "03", title: "Vendor Management",  desc: "Ongoing supplier relationships managed so you never miss stock or face fulfilment delays." },
-  { n: "04", title: "Stock Management",   desc: "Real-time inventory control to prevent overselling, stockouts, and fulfilment bottlenecks." },
+  { n: "01", title: "Product Listing", desc: "Optimised listings crafted for discoverability and conversion across every major platform." },
+  { n: "02", title: "Vendor Sourcing", desc: "We identify and vet reliable suppliers that match your product vision and quality standards." },
+  { n: "03", title: "Vendor Management", desc: "Ongoing supplier relationships managed so you never miss stock or face fulfilment delays." },
+  { n: "04", title: "Stock Management", desc: "Real-time inventory control to prevent overselling, stockouts, and fulfilment bottlenecks." },
 ];
 
 const supportServices = [
-  { title: "Logistics Management",    desc: "End-to-end shipment tracking and fulfilment coordination across all channels.", icon: Truck },
-  { title: "Order Processing",        desc: "Accurate, fast order handling and verification to keep customers satisfied.", icon: ShoppingCart },
-  { title: "SOP Creation",            desc: "Custom standard operating procedures engineered precisely for your workflow.", icon: ClipboardList },
+  { title: "Logistics Management", desc: "End-to-end shipment tracking and fulfilment coordination across all channels.", icon: Truck },
+  { title: "Order Processing", desc: "Accurate, fast order handling and verification to keep customers satisfied.", icon: ShoppingCart },
+  { title: "SOP Creation", desc: "Custom standard operating procedures engineered precisely for your workflow.", icon: ClipboardList },
   { title: "Return & Refund Process", desc: "Streamlined return handling that protects your brand reputation and margins.", icon: RotateCcw },
-  { title: "Customer Satisfaction",   desc: "Proactive CRM support that turns first-time buyers into loyal, returning fans.", icon: Star },
-  { title: "Business Scale Up",       desc: "Strategic guidance and scalable systems to fuel your next phase of growth.", icon: TrendingUp },
+  { title: "Customer Satisfaction", desc: "Proactive CRM support that turns first-time buyers into loyal, returning fans.", icon: Star },
+  { title: "Business Scale Up", desc: "Strategic guidance and scalable systems to fuel your next phase of growth.", icon: TrendingUp },
 ];
 
 const stats = [
-  { value: "12+",  label: "Years of Experience" },
-  { value: "1M+",  label: "Support Tickets Resolved" },
+  { value: "12+", label: "Years of Experience" },
+  { value: "1M+", label: "Support Tickets Resolved" },
   { value: "100%", label: "Client Satisfaction Rate" },
-  { value: "60+",  label: "Clients Served Globally" },
-  { value: "70%",  label: "Increase in Efficiency" },
-  { value: "99%",  label: "Error-Free Performance" },
+  { value: "60+", label: "Clients Served Globally" },
+  { value: "70%", label: "Increase in Efficiency" },
+  { value: "99%", label: "Error-Free Performance" },
 ];
 
-const paidTraffic    = ["Google Ads", "Meta Ads", "Email Marketing", "Social Media Ads"];
+const paidTraffic = ["Google Ads", "Meta Ads", "Email Marketing", "Social Media Ads"];
 const organicTraffic = ["SEO Optimisation", "AEO Strategy", "Blog & Content", "Website Copywriting"];
 
 const foundationCards = [
@@ -81,11 +81,10 @@ const foundationCards = [
 function SectionLabel({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
   return (
     <span
-      className={`inline-block px-4 py-1.5 text-[10px] font-black tracking-[0.3em] uppercase rounded-full border mb-5 ${
-        light
+      className={`inline-block px-4 py-1.5 text-[10px] font-black tracking-[0.3em] uppercase rounded-full border mb-5 ${light
           ? "border-blue-500/30 text-blue-400 bg-blue-500/10"
           : "border-blue-200 text-blue-600 bg-blue-50"
-      }`}
+        }`}
     >
       {children}
     </span>
@@ -95,11 +94,10 @@ function SectionLabel({ children, light = false }: { children: React.ReactNode; 
 function PhaseLabel({ n, light = false }: { n: string; light?: boolean }) {
   return (
     <span
-      className={`inline-flex items-center gap-2 px-4 py-1.5 text-[10px] font-black tracking-[0.3em] uppercase rounded-full border mb-5 ${
-        light
+      className={`inline-flex items-center gap-2 px-4 py-1.5 text-[10px] font-black tracking-[0.3em] uppercase rounded-full border mb-5 ${light
           ? "border-blue-500/30 text-blue-400 bg-blue-500/10"
           : "border-blue-200 text-blue-600 bg-blue-50"
-      }`}
+        }`}
     >
       Phase {n}
     </span>
@@ -136,7 +134,8 @@ const HowItWorks = () => {
           <AnimatedSection variant="blur">
             <SectionLabel light>Our Process</SectionLabel>
 
-            <h1 className="text-5xl sm:text-6xl lg:text-[5.5rem] font-black text-white leading-[1.04] mb-6 tracking-tight">
+            <h1 className="text-white font-black tracking-tight leading-tight mb-6 whitespace-nowrap"
+              style={{ fontSize: "clamp(2rem, 5.5vw, 5.5rem)" }}>
               Dream it.{" "}
               <span className="relative inline-block">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-300 to-blue-500">

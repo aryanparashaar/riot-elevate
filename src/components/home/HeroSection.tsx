@@ -452,7 +452,7 @@ const HeroSection = () => {
             >
               {/* Avatar stack */}
               <div className="flex -space-x-2.5">
-                {["CB","DA","HR","MK","SR"].map((init, i) => (
+                {["CB","DA","HR","MK","VS"].map((init, i) => (
                   <div
                     key={i}
                     className="w-8 h-8 rounded-full border-2 border-[#060810] flex items-center justify-center text-[9px] font-black text-white"

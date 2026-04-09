@@ -42,36 +42,91 @@ const AnimatedCounter = ({ value, suffix = "" }: { value: number; suffix?: strin
 };
 
 /* ─── SVG ILLUSTRATIONS ─────────────────────────────────────────── */
-const OpsIllustration = () => (
-  <svg viewBox="0 0 400 280" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="og1" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.25"/>
-        <stop offset="100%" stopColor="#1d4ed8" stopOpacity="0.08"/>
-      </linearGradient>
-      <linearGradient id="og2" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#60a5fa"/>
-        <stop offset="100%" stopColor="#2563eb"/>
-      </linearGradient>
-    </defs>
-    <circle cx="200" cy="140" r="115" fill="url(#og1)"/>
-    <circle cx="200" cy="140" r="78" fill="none" stroke="#3b82f6" strokeWidth="1" strokeDasharray="5 4" opacity="0.35"/>
-    <rect x="158" y="100" width="84" height="84" rx="18" fill="url(#og2)"/>
-    <text x="200" y="150" textAnchor="middle" fontSize="28">📦</text>
-    {[0,60,120,180,240,300].map((deg, i) => {
-      const rad = (deg * Math.PI) / 180;
-      const cx2 = 200 + 100 * Math.cos(rad);
-      const cy2 = 140 + 100 * Math.sin(rad);
-      return (
-        <g key={i}>
-          <line x1="200" y1="140" x2={cx2} y2={cy2} stroke="#3b82f6" strokeWidth="1" strokeDasharray="4 3" opacity="0.25"/>
-          <circle cx={cx2} cy={cy2} r="17" fill="#0a0d14" stroke="#3b82f6" strokeWidth="1.5"/>
-          <text x={cx2} y={cy2+5} textAnchor="middle" fontSize="12">{["🚚","📋","🔄","📊","🏷️","⚙️"][i]}</text>
-        </g>
-      );
-    })}
-  </svg>
-);
+const OpsIllustration = () => {
+  const emojis = ["🚚","📋","🔄","📊","🏷️","⚙️"];
+  const orbitR = 100;
+  const cx = 200;
+  const cy = 140;
+
+  return (
+    <svg viewBox="0 0 400 280" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="og1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.25"/>
+          <stop offset="100%" stopColor="#1d4ed8" stopOpacity="0.08"/>
+        </linearGradient>
+        <linearGradient id="og2" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#60a5fa"/>
+          <stop offset="100%" stopColor="#2563eb"/>
+        </linearGradient>
+        <style>{`
+          @keyframes orbitSpin {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+          }
+          @keyframes counterSpin {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(-360deg); }
+          }
+          .orbit-ring {
+            transform-origin: ${cx}px ${cy}px;
+            animation: orbitSpin 14s linear infinite;
+          }
+          .orbit-icon {
+            transform-origin: 0px 0px;
+            animation: counterSpin 14s linear infinite;
+          }
+        `}</style>
+      </defs>
+
+      {/* Outer glow */}
+      <circle cx={cx} cy={cy} r="115" fill="url(#og1)"/>
+
+      {/* Static dashed orbit track */}
+      <circle cx={cx} cy={cy} r={orbitR} fill="none"
+        stroke="#3b82f6" strokeWidth="1" strokeDasharray="5 4" opacity="0.3"/>
+
+      {/* Static faint spokes */}
+      {[0,60,120,180,240,300].map((deg, i) => {
+        const rad = (deg * Math.PI) / 180;
+        return (
+          <line key={i}
+            x1={cx} y1={cy}
+            x2={cx + orbitR * Math.cos(rad)}
+            y2={cy + orbitR * Math.sin(rad)}
+            stroke="#3b82f6" strokeWidth="0.8"
+            strokeDasharray="4 3" opacity="0.18"
+          />
+        );
+      })}
+
+      {/* Centre card — never moves */}
+      <rect x="158" y="98" width="84" height="84" rx="18" fill="url(#og2)"/>
+      <text x={cx} y="148" textAnchor="middle" fontSize="28">📦</text>
+
+      {/* Rotating ring of icons */}
+      <g className="orbit-ring">
+        {[0,60,120,180,240,300].map((deg, i) => {
+          const rad = (deg * Math.PI) / 180;
+          const iconX = cx + orbitR * Math.cos(rad);
+          const iconY = cy + orbitR * Math.sin(rad);
+          return (
+            <g key={i} transform={`translate(${iconX}, ${iconY})`}>
+              {/* Counter-rotate so emoji stays upright while orbiting */}
+              <g className="orbit-icon">
+                <circle cx={0} cy={0} r="17"
+                  fill="#0a0d14" stroke="#3b82f6" strokeWidth="1.5"/>
+                <text x={0} y={5} textAnchor="middle" fontSize="14">
+                  {emojis[i]}
+                </text>
+              </g>
+            </g>
+          );
+        })}
+      </g>
+    </svg>
+  );
+};
 
 const BrandIllustration = () => {
   const [counts, setCounts] = useState({ followers: 0, revenue: 0, engagement: 0 });
@@ -207,11 +262,11 @@ const SupportIllustration = () => (
     <text x="125" y="50" textAnchor="middle" fontSize="11" fill="white" fontWeight="700">Hi! How can we help</text>
     <text x="125" y="67" textAnchor="middle" fontSize="11" fill="white" fontWeight="700">you today? 😊</text>
     <rect x="180" y="115" width="190" height="60" rx="18" fill="#0a0d14"/>
-    <polygon points="350,175 370,175 370,195" fill="#0a0d14"/>
+    <polygon points="330,175 350,175 350,195" fill="#0a0d14"/>
     <text x="275" y="140" textAnchor="middle" fontSize="11" fill="white" fontWeight="700">I need help with</text>
     <text x="275" y="157" textAnchor="middle" fontSize="11" fill="white" fontWeight="700">my order 📦</text>
     <rect x="30" y="200" width="210" height="55" rx="18" fill="url(#sg1)"/>
-    <polygon points="50,255 72,255 50,275" fill="#10b981"/>
+    <polygon points="50,255 72,255 50,275" fill="#279CBF"/>
     <text x="135" y="223" textAnchor="middle" fontSize="11" fill="white" fontWeight="700">Resolved! Order #4521</text>
     <text x="135" y="240" textAnchor="middle" fontSize="11" fill="white" fontWeight="700">is on its way ✅</text>
     {[0,1,2,3,4].map(i=>(

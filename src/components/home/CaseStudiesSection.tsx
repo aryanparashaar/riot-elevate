@@ -10,7 +10,7 @@ const cases = [
     title: "Fashion D2C Brand",
     subtitle: "Ticket chaos → 24/7 resolution engine",
     description:
-      "A fast-growing fashion brand was drowning in 8,000+ monthly support tickets with a 3-day average response time. RIOT rebuilt their entire CX pipeline with smart routing, templated responses, and round-the-clock coverage.",
+      "A fast growing fashion brand was drowning in 8,000+ monthly support tickets with a 3-day average response time. RIOT rebuilt their entire CX pipeline with smart routing, templated responses, and round-the-clock coverage.",
     results: [
       { label: "Response Time", value: "↓ 60%", color: "#10b981" },
       { label: "CSAT Score", value: "↑ 45%", color: "#3b82f6" },
@@ -29,7 +29,7 @@ const cases = [
     title: "Wellness Brand Scale-Up",
     subtitle: "3 warehouses. 1 seamless operation.",
     description:
-      "A D2C wellness brand scaling across 3 fulfillment centers had 12% order error rates and no inventory visibility. RIOT engineered end-to-end backend operations, SOP systems, and vendor management — delivering near-perfect accuracy at 3× throughput.",
+      "A D2C wellness brand scaling across 3 fulfillment centers had 12% order error rates and no inventory visibility. RIOT engineered end-to-end backend operations, SOP systems, and vendor management delivering near perfect accuracy at 3× throughput.",
     results: [
       { label: "Order Accuracy", value: "99.2%", color: "#f59e0b" },
       { label: "Faster Processing", value: "3×", color: "#3b82f6" },
@@ -48,7 +48,7 @@ const cases = [
     title: "Multi-Category Retailer",
     subtitle: "From unknown to category leader.",
     description:
-      "A multi-category retailer with no brand identity was competing purely on price. RIOT overhauled their brand — logo, palette, typography, and digital presence — while managing their social media and content strategy end-to-end.",
+      "A multi-category retailer with no brand identity was competing purely on price. RIOT overhauled their brand logo, palette, typography, and digital presence — while managing their social media and content strategy end-to-end.",
     results: [
       { label: "Brand Recognition", value: "↑ 80%", color: "#8b5cf6" },
       { label: "Social Followers", value: "↑ 220%", color: "#f59e0b" },
