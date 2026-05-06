@@ -408,7 +408,7 @@ const HeroSection = () => {
               className="text-base sm:text-lg text-white/45 leading-relaxed max-w-lg mb-10"
             >
               We bring your ticket count down with efficient CRM solutions and seamless
-              backend support — helping businesses resolve queries faster, enhance
+              backend support, helping businesses resolve queries faster, enhance
               satisfaction, and scale effortlessly.
             </motion.p>
 

@@ -273,7 +273,7 @@ const CaseStudiesSection = () => {
                 </span>
               </h2>
               <p className="text-gray-400 text-base max-w-xl leading-relaxed">
-                Real transformations for brands that needed more than advice — they needed
+                Real transformations for brands that needed more than advice, they needed
                 execution. Here's what we delivered.
               </p>
             </div>
