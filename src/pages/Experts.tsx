@@ -24,7 +24,7 @@ const experts = [
     bio: "Backend automation architect and the operational brain of RIOT. Deepika has streamlined workflows for 60+ global brands with precision and empathy.",
     
     email: "deepika@riotecommerce.com",
-    image: "/images/team/Deepika.avif",
+    image: "/images/team/Co-founder.jpeg",
     linkedin: "https://www.linkedin.com/in/deepika-riot?utm_source=share_via&utm_content=profile&utm_medium=member_ios",
     
     tag: "Operations & Automation",

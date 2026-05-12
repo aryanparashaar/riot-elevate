@@ -90,7 +90,7 @@ const storyMilestones = [
   { year: "2020", event: "1M+ tickets resolved; 150+ brands transformed globally" },
   { year: "2022", event: "Integrated AI-assisted operations across client workflows; crossed 15+ active markets" },
   { year: "2024", event: "Surpassed 60+ active clients; deepened presence across North America, Europe & Southeast Asia with dedicated account teams" },
-  { year: "2026", event: "Moved into a brand-new office, expanded our team, and launched a fully redesigned brand — built to match the ambition of what's next" },
+  { year: "2026", event: "Moved into a brand-new office, expanded our team, and launched a fully redesigned brand built to match the ambition of what's next" },
 ];
 
 const quickLinks = [
@@ -207,7 +207,7 @@ if (loading) return <HomeSkeleton />;
             </h1>
 
             <p className="text-lg sm:text-xl text-white/45 max-w-2xl mx-auto leading-relaxed mb-10">
-              We take the operational complexity off your plate — from website creation to
+              We take the operational complexity off your plate from website creation to
               backend management, so you can focus entirely on growing your brand.
             </p>
 
@@ -269,7 +269,7 @@ if (loading) return <HomeSkeleton />;
               <div className="relative">
                 <div className="relative rounded-3xl overflow-hidden bg-[#0a0d14] aspect-[4/5] max-w-sm mx-auto lg:mx-0 shadow-2xl">
                   <img
-                    src="/Co-founder.avif"
+                    src="/Co-founder.jpeg"
                     alt="Deepika Arora, Co-Founder of RIOT Ecommerce"
                     className="w-full h-full object-cover"
                     onError={(e) => {
@@ -307,7 +307,7 @@ if (loading) return <HomeSkeleton />;
               </blockquote>
 
               <p className="text-gray-500 text-base leading-relaxed mb-8">
-                Calculate the risk, then pour in your resources and experience — that's
+                Calculate the risk, then pour in your resources and experience that's
                 how you give your vision its best chance to succeed.
               </p>
 
@@ -317,7 +317,7 @@ if (loading) return <HomeSkeleton />;
                 <p>
                   RIOT Ecommerce was born from a simple frustration: great products were
                   losing to poor operations. We built the infrastructure layer that brands
-                  need but rarely have in-house — combining expert talent, battle-tested
+                  need but rarely have in-house combining expert talent, battle-tested
                   processes, and relentless execution.
                 </p>
                 <p>
@@ -341,7 +341,7 @@ if (loading) return <HomeSkeleton />;
               Purpose & Vision
             </SectionHeading>
             <p className="text-gray-400 text-base max-w-xl mx-auto mt-3 leading-relaxed">
-              Two sides of the same coin — why we exist today, and where we're taking you tomorrow.
+              Two sides of the same coin - why we exist today, and where we're taking you tomorrow.
             </p>
           </AnimatedSection>
 
@@ -372,7 +372,7 @@ if (loading) return <HomeSkeleton />;
                   </p>
                   <p>
                     We empower brands with expert backend support, optimized workflows,
-                    and cutting-edge solutions — from website creation and platform
+                    and cutting-edge solutions from website creation and platform
                     management to CRM support and order processing.
                   </p>
                 </div>
@@ -418,7 +418,7 @@ if (loading) return <HomeSkeleton />;
                 <div className="p-8 flex flex-col flex-1">
                   <p className="text-white/60 text-[15px] leading-relaxed mb-8 flex-1">
                     We envision a future where our partners' businesses thrive alongside
-                    ours — built on empathy, trust, and mutual growth. We aim to be the
+                    ours built on empathy, trust, and mutual growth. We aim to be the
                     catalyst for digital transformation, empowering brands to achieve
                     their fullest potential while maintaining the highest standards of
                     integrity and innovation.
@@ -504,7 +504,7 @@ if (loading) return <HomeSkeleton />;
               <span className="text-blue-600">for Operators</span>
             </SectionHeading>
             <p className="text-gray-500 text-base max-w-xl mx-auto mt-4 leading-relaxed">
-              We started where you are — buried in tickets, duct-taping workflows, and
+              We started where you are buried in tickets, duct-taping workflows, and
               making gut-feel decisions. Over 12 years, we built the playbook so you don't
               have to.
             </p>
