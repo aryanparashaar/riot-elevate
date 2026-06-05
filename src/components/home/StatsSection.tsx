@@ -4,7 +4,7 @@ import { TrendingUp, Heart, Award, Rocket } from "lucide-react";
 
 const stats = [
   {
-    value: 500,
+    value: 300,
     suffix: "+",
     label: "Projects Delivered",
     description: "Across 15+ countries",
@@ -43,7 +43,7 @@ const stats = [
     iconColor: "#f59e0b",
   },
   {
-    value: 150,
+    value: 90,
     suffix: "+",
     label: "Brands Scaled",
     description: "From startup to enterprise",

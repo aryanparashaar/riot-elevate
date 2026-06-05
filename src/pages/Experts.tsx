@@ -11,7 +11,7 @@ const experts = [
     role: "CEO & Founder",
     bio: "15+ years in ecommerce operations. Chirag architects the systems and strategies that help brands scale from 6 to 8 figures without operational chaos.",
     
-    email: "cb@riotecommerce.com",
+    email: "chirag@riotecommerce.com",
     image: "/images/team/Chirag.avif",
     linkedin: "https://www.linkedin.com/in/bhutanichirag?utm_source=share_via&utm_content=profile&utm_medium=member_ios",
     
@@ -35,7 +35,7 @@ const experts = [
     role: "Co-Founder",
     bio: "Scaled 50+ D2C brands through data-backed traffic strategies. Harish owns the full funnel — from first click to loyal repeat customer.",
     
-    email: "mhr@riotecommerce.com",
+    email: "harish.reddy@riotecommerce.com",
     image: "/images/team/Harish.avif",
     linkedin: "https://www.linkedin.com/in/harish-reddy-mallepally-200526227?utm_source=share_via&utm_content=profile&utm_medium=member_ios",
     
