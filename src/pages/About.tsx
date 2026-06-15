@@ -84,13 +84,13 @@ const visionStats = [
 ];
 
 const storyMilestones = [
-  { year: "2014", event: "Founded with a single mission: make ecommerce ops effortless" },
-  { year: "2016", event: "Crossed 10,000 support tickets resolved; landed our first international client" },
-  { year: "2018", event: "Expanded to 10 countries; launched our signature automation playbook" },
-  { year: "2020", event: "1M+ tickets resolved; 150+ brands transformed globally" },
-  { year: "2022", event: "Integrated AI-assisted operations across client workflows; crossed 15+ active markets" },
-  { year: "2024", event: "Surpassed 60+ active clients; deepened presence across North America, Europe & Southeast Asia with dedicated account teams" },
-  { year: "2026", event: "Moved into a brand-new office, expanded our team, and launched a fully redesigned brand built to match the ambition of what's next" },
+  { year: "2014", event: "It started with curiosity. We began exploring web technologies, digital marketing, and ecommerce operations, slowly shaping the idea that would become RIOT Ecommerce." },
+  { year: "2016", event: "The work started paying off. We crossed 10,000 support tickets resolved and welcomed our first international client, proof that what we were building actually worked." },
+  { year: "2018", event: "Growth pushed us to think bigger. We expanded into 10 countries and launched our signature automation playbook to make sure quality never got left behind as we scaled." },
+  { year: "2020", event: "A milestone we're proud of: over 1 million tickets resolved and 150+ brands transformed across the globe. The playbook was working, at every scale." },
+  { year: "2022", event: "We leaned into AI before it became the obvious thing to do, weaving AI-assisted operations into client workflows and growing our presence across 15 active markets." },
+  { year: "2024", event: "60+ active clients, dedicated account teams, and a real presence across North America, Europe, and Southeast Asia. What started as curiosity had become something much bigger." },
+  { year: "2026", event: "Moved into a brand-new office, expanded our team, and launched a fully redesigned brand built to match the ambition of what's next." },
 ];
 
 const quickLinks = [

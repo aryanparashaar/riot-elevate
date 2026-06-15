@@ -3,12 +3,19 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   Briefcase, MapPin, Clock, ChevronRight, X, Upload, Send,
   Users, TrendingUp, Globe, Award, BookOpen, Heart,
-  Zap, Target, Star, Shield, GraduationCap, DollarSign,
+  Zap, Target, Star, GraduationCap, DollarSign,
   CheckCircle2, ArrowUpRight, ArrowRight,
 } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import CTASection from "@/components/home/CTASection";
 import { useToast } from "@/hooks/use-toast";
+
+/* ─── CLOUDINARY CONFIG ─────────────────────────────────────────────── */
+const CLOUDINARY_CLOUD_NAME = "dyvlr2w82";
+const CLOUDINARY_UPLOAD_PRESET = "riot_resumes";
+
+/* ─── FORMSPREE CONFIG ──────────────────────────────────────────────── */
+const FORMSPREE_ID = "meewlrqp";
 
 /* ─── DATA ──────────────────────────────────────────────────────────── */
 
@@ -128,7 +135,7 @@ const benefits = [
   { icon: TrendingUp,    title: "Career Growth",         desc: "Clear pathways to advance your career with regular performance reviews." },
   { icon: GraduationCap, title: "Skill Development",     desc: "Continuous learning through workshops, training, and mentorship." },
   { icon: Heart,         title: "Positive Work Culture", desc: "An inclusive environment where every voice matters and is heard." },
-  { icon: DollarSign,    title: "Competitive Pay",        desc: "Fair compensation packages with performance-based incentives." },
+  { icon: DollarSign,    title: "Competitive Pay",       desc: "Fair compensation packages with performance-based incentives." },
   { icon: Award,         title: "Recognition",           desc: "Regular rewards for outstanding contributions and milestones." },
   { icon: Star,          title: "Industry Exposure",     desc: "Stay ahead with access to the latest ecommerce tools and trends." },
 ];
@@ -166,54 +173,109 @@ const departmentColors: Record<string, string> = {
 
 const Careers = () => {
   const [selectedJob, setSelectedJob] = useState<typeof jobListings[0] | null>(null);
-  const [formData, setFormData] = useState({ name: "", email: "", phone: "", position: "", message: "" });
-  const [fileName, setFileName] = useState("");
+  const [formData, setFormData] = useState({
+    name: "", email: "", phone: "", position: "", message: "",
+  });
+  const [fileName, setFileName]     = useState("");
   const [resumeFile, setResumeFile] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState<string>("");
   const { toast } = useToast();
 
-  /* ── Form submission via Web3Forms ── */
+  /* ─────────────────────────────────────────────────────────────────
+     SUBMIT HANDLER
+     Flow:
+       1. Validate required fields
+       2. If resume selected → upload to Cloudinary → get secure URL
+       3. Send form data + resume URL to Formspree → email to HR
+  ───────────────────────────────────────────────────────────────── */
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     if (!formData.name || !formData.email || !formData.phone || !formData.position) {
       toast({ title: "Please fill all required fields", variant: "destructive" });
       return;
     }
 
     setIsSubmitting(true);
+
     try {
-      const body = new FormData();
-      // Replace with your actual Web3Forms access key (free at web3forms.com)
-      body.append("access_key", "YOUR_WEB3FORMS_ACCESS_KEY");
-      body.append("subject", `New Job Application – ${formData.position}`);
-      body.append("from_name", formData.name);
-      body.append("name", formData.name);
-      body.append("email", formData.email);
-      body.append("phone", formData.phone);
-      body.append("position", formData.position);
-      body.append("message", formData.message || "No cover note provided.");
-      // Attach resume file if selected
-      if (resumeFile) body.append("resume", resumeFile);
+      // ── STEP 1: Upload resume to Cloudinary ──────────────────────
+      let resumeUrl = "Not provided";
 
-      const res = await fetch("https://api.web3forms.com/submit", { method: "POST", body });
-      const data = await res.json();
+      if (resumeFile) {
+        setUploadProgress("Uploading resume...");
 
-      if (data.success) {
-        toast({ title: "Application Submitted! 🎉", description: "We'll review your application and get back to you within 48 hours." });
-        setFormData({ name: "", email: "", phone: "", position: "", message: "" });
-        setFileName("");
-        setResumeFile(null);
-      } else {
-        throw new Error(data.message);
+        const cloudinaryForm = new FormData();
+        cloudinaryForm.append("file", resumeFile);
+        cloudinaryForm.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+        cloudinaryForm.append("folder", "resumes");
+
+        const cloudRes = await fetch(
+          `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/raw/upload`,
+          { method: "POST", body: cloudinaryForm }
+        );
+
+        const cloudData = await cloudRes.json();
+
+        if (!cloudRes.ok) {
+          throw new Error(cloudData?.error?.message || "Resume upload failed. Please try again.");
+        }
+
+        resumeUrl = cloudData.secure_url;
+        setUploadProgress("Submitting application...");
       }
-    } catch {
-      toast({ title: "Submission failed", description: "Please try again or email us directly.", variant: "destructive" });
+
+      // ── STEP 2: Submit to Formspree ──────────────────────────────
+      const body = new FormData();
+      body.append("name",        formData.name);
+      body.append("email",       formData.email);
+      body.append("phone",       formData.phone);
+      body.append("position",    formData.position);
+      body.append("message",     formData.message || "No cover note provided.");
+      body.append("resume_link", resumeUrl); // Cloudinary URL sent as text — no file size limit issues
+
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+  method: "POST",
+  headers: { Accept: "application/json" },
+  body,
+});
+
+// Safely parse — don't crash if response isn't clean JSON
+let data: any = {};
+try {
+  data = await res.json();
+} catch {
+  // Response wasn't JSON — that's fine, we check res.ok below
+}
+
+if (res.ok || data?.ok === true) {  // ← catches both cases
+  toast({
+    title: "Application Submitted! 🎉",
+    description: "We'll review your application and get back to you within 48 hours.",
+  });
+  setFormData({ name: "", email: "", phone: "", position: "", message: "" });
+  setFileName("");
+  setResumeFile(null);
+  setUploadProgress("");
+} else {
+  throw new Error(data?.errors?.[0]?.message || "Submission failed. Please try again.");
+}
+
+    } catch (err: any) {
+      console.error("Submission error:", err);
+      setUploadProgress("");
+      toast({
+        title: "Submission failed",
+        description: err.message || "Please try again or email us directly.",
+        variant: "destructive",
+      });
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const scrollToApply = () => document.getElementById("apply-form")?.scrollIntoView({ behavior: "smooth" });
+  const scrollToApply     = () => document.getElementById("apply-form")?.scrollIntoView({ behavior: "smooth" });
   const scrollToPositions = () => document.getElementById("open-positions")?.scrollIntoView({ behavior: "smooth" });
 
   return (
@@ -223,15 +285,12 @@ const Careers = () => {
           HERO
       ════════════════════════════════════════════════════════════ */}
       <section className="relative overflow-hidden bg-[#060810] pt-36 pb-32 min-h-[88vh] flex items-center">
-        {/* Grid */}
         <div className="absolute inset-0 opacity-[0.055]" style={{
           backgroundImage: "linear-gradient(#3b82f6 1px, transparent 1px), linear-gradient(90deg, #3b82f6 1px, transparent 1px)",
           backgroundSize: "64px 64px",
         }} />
-        {/* Glows */}
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] rounded-full bg-blue-700/20 blur-[160px] pointer-events-none" />
         <div className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full bg-blue-500/10 blur-[100px] pointer-events-none" />
-        {/* Accent lines */}
         <div className="absolute top-28 left-10 w-[1px] h-28 bg-gradient-to-b from-transparent via-blue-500/40 to-transparent" />
         <div className="absolute top-44 right-16 w-[1px] h-20 bg-gradient-to-b from-transparent via-blue-400/30 to-transparent" />
 
@@ -254,13 +313,12 @@ const Careers = () => {
               global brands. We're looking for passionate people ready to make a real impact.
             </p>
 
-            {/* Job count badges */}
             <div className="flex flex-wrap items-center justify-center gap-3 mb-10">
               {[
                 { v: `${jobListings.length}`, l: "Open Roles" },
-                { v: "On-site", l: "Work Mode" },
-                { v: "12+", l: "Years Building" },
-                { v: "15+", l: "Countries Served" },
+                { v: "On-site",               l: "Work Mode" },
+                { v: "12+",                   l: "Years Building" },
+                { v: "15+",                   l: "Countries Served" },
               ].map((b) => (
                 <span key={b.l} className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-white/50 text-xs font-bold tracking-wide">
                   <Zap size={10} className="text-blue-400" />
@@ -269,7 +327,6 @@ const Careers = () => {
               ))}
             </div>
 
-            {/* Single CTA */}
             <motion.button
               onClick={scrollToPositions}
               whileHover={{ scale: 1.03, y: -2 }}
@@ -313,7 +370,7 @@ const Careers = () => {
                 whileHover={{ y: -6, borderColor: "rgba(59,130,246,0.4)" }}
                 className="rounded-3xl border-2 border-gray-100 bg-white p-8 h-full flex flex-col gap-5 transition-all duration-300 cursor-default hover:shadow-xl"
               >
-                <div className="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center shrink-0 group-hover:bg-blue-600 transition-colors">
+                <div className="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center shrink-0">
                   <item.icon size={20} className="text-blue-600" strokeWidth={2} />
                 </div>
                 <div>
@@ -354,7 +411,6 @@ const Careers = () => {
                 className="rounded-3xl bg-white border-2 border-gray-100 hover:border-blue-200 hover:shadow-xl p-8 cursor-pointer flex flex-col transition-all duration-300 group"
                 onClick={() => setSelectedJob(job)}
               >
-                {/* Header row */}
                 <div className="flex items-start justify-between mb-5">
                   <span className={`px-3 py-1 rounded-full text-[10px] font-black tracking-[0.2em] uppercase border ${departmentColors[job.department] ?? "bg-blue-50 text-blue-600 border-blue-200"}`}>
                     {job.department}
@@ -374,21 +430,19 @@ const Careers = () => {
                   {job.shortDesc}
                 </p>
 
-                {/* Meta tags */}
                 <div className="flex flex-wrap gap-2 mb-6">
                   {[
-                    { icon: MapPin, label: job.location },
-                    { icon: Clock,  label: job.type },
+                    { icon: MapPin,    label: job.location },
+                    { icon: Clock,     label: job.type },
                     { icon: Briefcase, label: job.hours.split("·")[0].trim() },
-                  ].map(({ icon: Icon, label }) => (
-                    <span key={label} className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gray-50 border border-gray-100 text-gray-500 text-[11px] font-semibold">
+                  ].map(({ icon: Icon, label }, idx) => (
+                    <span key={`${job.id}-meta-${idx}`} className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gray-50 border border-gray-100 text-gray-500 text-[11px] font-semibold">
                       <Icon size={11} />
                       {label}
                     </span>
                   ))}
                 </div>
 
-                {/* Skill pills */}
                 <div className="flex flex-wrap gap-2 pt-5 border-t border-gray-100">
                   {job.skills.slice(0, 3).map((s) => (
                     <span key={s} className="px-2.5 py-1 text-[10px] font-bold rounded-full bg-blue-50 text-blue-600 border border-blue-100">
@@ -413,7 +467,6 @@ const Careers = () => {
       <AnimatePresence>
         {selectedJob && (
           <>
-            {/* Backdrop */}
             <motion.div
               key="backdrop"
               initial={{ opacity: 0 }}
@@ -423,7 +476,6 @@ const Careers = () => {
               className="fixed inset-0 bg-[#060810]/70 backdrop-blur-sm z-40"
             />
 
-            {/* Panel */}
             <motion.div
               key="panel"
               initial={{ x: "100%" }}
@@ -432,7 +484,6 @@ const Careers = () => {
               transition={{ type: "spring", stiffness: 280, damping: 30 }}
               className="fixed right-0 top-0 bottom-0 w-full max-w-xl bg-white z-50 overflow-y-auto shadow-2xl flex flex-col"
             >
-              {/* Panel header */}
               <div className="bg-[#0a0d14] px-8 py-6 shrink-0">
                 <div className="flex items-start justify-between mb-4">
                   <span className={`px-3 py-1 rounded-full text-[10px] font-black tracking-[0.2em] uppercase border ${departmentColors[selectedJob.department] ?? "bg-blue-50 text-blue-600 border-blue-200"}`}>
@@ -447,21 +498,21 @@ const Careers = () => {
                 </div>
                 <h2 className="text-2xl font-black text-white mb-2 leading-tight">{selectedJob.title}</h2>
                 <div className="flex flex-wrap gap-2">
-                  {[selectedJob.location, selectedJob.type, selectedJob.hours.split("·")[1]?.trim()].filter(Boolean).map((t) => (
-                    <span key={t} className="px-3 py-1 rounded-full bg-white/10 border border-white/15 text-white/60 text-[11px] font-semibold">
-                      {t}
-                    </span>
-                  ))}
+                  {[selectedJob.location, selectedJob.type, selectedJob.hours.split("·")[1]?.trim()]
+                    .filter(Boolean)
+                    .map((t, idx) => (
+                      <span key={`panel-tag-${idx}`} className="px-3 py-1 rounded-full bg-white/10 border border-white/15 text-white/60 text-[11px] font-semibold">
+                        {t}
+                      </span>
+                    ))}
                 </div>
               </div>
 
-              {/* Panel body */}
               <div className="flex-1 p-8 space-y-8">
                 <div>
                   <h4 className="text-[10px] font-black tracking-[0.25em] uppercase text-blue-600 mb-3">About This Role</h4>
                   <p className="text-gray-600 text-[14px] leading-relaxed">{selectedJob.fullDesc}</p>
                 </div>
-
                 <div>
                   <h4 className="text-[10px] font-black tracking-[0.25em] uppercase text-blue-600 mb-3">Responsibilities</h4>
                   <ul className="space-y-3">
@@ -473,7 +524,6 @@ const Careers = () => {
                     ))}
                   </ul>
                 </div>
-
                 <div>
                   <h4 className="text-[10px] font-black tracking-[0.25em] uppercase text-blue-600 mb-3">Requirements</h4>
                   <ul className="space-y-3">
@@ -485,7 +535,6 @@ const Careers = () => {
                     ))}
                   </ul>
                 </div>
-
                 <div>
                   <h4 className="text-[10px] font-black tracking-[0.25em] uppercase text-blue-600 mb-3">Skills</h4>
                   <div className="flex flex-wrap gap-2">
@@ -498,10 +547,13 @@ const Careers = () => {
                 </div>
               </div>
 
-              {/* Panel footer CTA */}
               <div className="p-8 border-t border-gray-100 shrink-0">
                 <button
-                  onClick={() => { setSelectedJob(null); setFormData(p => ({ ...p, position: selectedJob.title })); scrollToApply(); }}
+                  onClick={() => {
+                    setSelectedJob(null);
+                    setFormData(p => ({ ...p, position: selectedJob.title }));
+                    scrollToApply();
+                  }}
                   className="w-full flex items-center justify-center gap-2 py-4 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-black text-sm transition-all duration-200 shadow-lg shadow-blue-700/20"
                 >
                   Apply for This Position
@@ -524,8 +576,7 @@ const Careers = () => {
               Life at RIOT Ecommerce
             </h2>
             <p className="text-gray-400 text-base max-w-lg mx-auto mt-3 leading-relaxed">
-              A glimpse into the workspace, team activities, and the energy that
-              drives us every single day.
+              A glimpse into the workspace, team activities, and the energy that drives us every single day.
             </p>
           </AnimatedSection>
 
@@ -627,7 +678,7 @@ const Careers = () => {
                 {[
                   "Response within 48 business hours",
                   "Direct review by our hiring team",
-                  "Resume received securely via email",
+                  "Resume stored securely via Cloudinary",
                   "Open to all experience levels",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3 text-sm text-gray-600">
@@ -637,17 +688,16 @@ const Careers = () => {
                 ))}
               </ul>
 
-              {/* Contact fallback */}
               <div className="rounded-2xl bg-[#0a0d14] p-7 border border-white/5">
                 <p className="text-[10px] font-black tracking-[0.25em] uppercase text-blue-400 mb-2">Prefer email?</p>
                 <p className="text-white/60 text-sm leading-relaxed mb-3">
                   Send your CV and cover note directly to our hiring team.
                 </p>
                 <a
-                  href="mailto:careers@riotecommerce.com"
+                  href="mailto:hr.info@riotecommerce.com"
                   className="text-blue-400 text-sm font-bold hover:text-blue-300 transition-colors flex items-center gap-1.5"
                 >
-                  careers@riotecommerce.com
+                  hr.info@riotecommerce.com
                   <ArrowUpRight size={13} />
                 </a>
               </div>
@@ -714,15 +764,18 @@ const Careers = () => {
                       className="w-full h-11 px-4 rounded-xl border-2 border-gray-100 bg-gray-50 text-[#0a0d14] text-sm focus:outline-none focus:border-blue-400 focus:bg-white transition-all"
                     >
                       <option value="">Select a position</option>
-                      {jobListings.map(j => <option key={j.id} value={j.title}>{j.title}</option>)}
+                      {jobListings.map(j => (
+                        <option key={j.id} value={j.title}>{j.title}</option>
+                      ))}
                     </select>
                   </div>
                 </div>
 
-                {/* Resume upload */}
+                {/* Resume Upload → Cloudinary */}
                 <div className="space-y-2">
                   <label className="text-[11px] font-black tracking-[0.15em] uppercase text-gray-500">
-                    Resume / CV
+                    Resume / CV{" "}
+                    <span className="text-gray-300 font-normal normal-case tracking-normal">(optional)</span>
                   </label>
                   <label className="flex items-center gap-3 px-5 py-4 rounded-xl border-2 border-dashed border-gray-200 bg-gray-50 cursor-pointer hover:border-blue-400 hover:bg-blue-50/50 transition-all duration-200 group">
                     <div className="w-9 h-9 rounded-xl bg-gray-100 group-hover:bg-blue-100 flex items-center justify-center shrink-0 transition-colors">
@@ -735,19 +788,29 @@ const Careers = () => {
                       <p className="text-[11px] text-gray-300 mt-0.5">PDF, DOC, DOCX — max 5 MB</p>
                     </div>
                     <input
-                      type="file" accept=".pdf,.doc,.docx" className="hidden"
+                      type="file"
+                      accept=".pdf,.doc,.docx"
+                      className="hidden"
                       onChange={e => {
                         const f = e.target.files?.[0];
                         if (f) { setFileName(f.name); setResumeFile(f); }
                       }}
                     />
                   </label>
+                  {/* Show selected file name with green confirmation */}
+                  {fileName && (
+                    <p className="text-[11px] text-green-500 flex items-center gap-1.5 mt-1">
+                      <CheckCircle2 size={11} />
+                      {fileName} selected
+                    </p>
+                  )}
                 </div>
 
                 {/* Cover note */}
                 <div className="space-y-2">
                   <label className="text-[11px] font-black tracking-[0.15em] uppercase text-gray-500" htmlFor="message">
-                    Cover Note <span className="text-gray-300 font-normal normal-case tracking-normal">(optional)</span>
+                    Cover Note{" "}
+                    <span className="text-gray-300 font-normal normal-case tracking-normal">(optional)</span>
                   </label>
                   <textarea
                     id="message" rows={4}
@@ -757,6 +820,18 @@ const Careers = () => {
                     className="w-full px-4 py-3 rounded-xl border-2 border-gray-100 bg-gray-50 text-[#0a0d14] text-sm placeholder:text-gray-300 focus:outline-none focus:border-blue-400 focus:bg-white transition-all resize-none"
                   />
                 </div>
+
+                {/* Upload progress indicator */}
+                {uploadProgress && (
+                  <div className="flex items-center gap-2 text-blue-600 text-sm font-semibold">
+                    <motion.div
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
+                      className="w-4 h-4 border-2 border-blue-200 border-t-blue-600 rounded-full"
+                    />
+                    {uploadProgress}
+                  </div>
+                )}
 
                 {/* Submit */}
                 <motion.button
