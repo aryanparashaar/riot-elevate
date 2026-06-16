@@ -445,7 +445,7 @@ const Services = () => {
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-400">success</span>
               </h1>
               <p className="text-lg text-white/50 leading-relaxed mb-10">
-                Expert-driven solutions to streamline your ecommerce operations, enhance efficiency, and drive growth. We handle the details — you achieve success.
+                Expert-driven solutions to streamline your ecommerce operations, enhance efficiency, and drive growth. We handle the details - you achieve success.
               </p>
               <div className="flex flex-wrap gap-3">
                 {services.map((s) => (
@@ -643,11 +643,11 @@ const Services = () => {
                                 style={{ color: isDark||isAccent ? "rgba(255,255,255,0.6)" : "#64748b" }}>
                                 {item.desc}
                               </p>
-                              <a href="/contact" className="inline-flex items-center gap-1.5 text-xs font-bold mt-1 group"
+                              {/* <a href="/contact" className="inline-flex items-center gap-1.5 text-xs font-bold mt-1 group"
                                 style={{ color: isDark||isAccent ? "rgba(255,255,255,0.8)" : service.accentColor }}>
                                 Get started
                                 <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform"/>
-                              </a>
+                              </a> */}
                             </motion.div>
                           );
                         })}
