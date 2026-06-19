@@ -251,7 +251,7 @@ const StatsSection = () => {
             </span>
           </h2>
           <p className="text-gray-400 text-base max-w-xl mx-auto">
-            Real results, real clients, real growth — across every market we operate in.
+            Real results, real clients, real growth - across every market we operate in.
           </p>
         </motion.div>
 

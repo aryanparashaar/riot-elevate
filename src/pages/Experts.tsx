@@ -33,7 +33,7 @@ const experts = [
   {
     name: "Harish Reddy",
     role: "Co-Founder",
-    bio: "Scaled 50+ D2C brands through data-backed traffic strategies. Harish owns the full funnel — from first click to loyal repeat customer.",
+    bio: "Scaled 50+ D2C brands through data-backed traffic strategies. Harish owns the full funnel, from first click to loyal repeat customer.",
     
     email: "harish.reddy@riotecommerce.com",
     image: "/images/team/Harish.avif",
@@ -57,7 +57,7 @@ const culturePoints = [
   {
     icon: Users,
     title: "Collaboration First",
-    desc: "Ideas flow freely — every voice shapes the bigger vision.",
+    desc: "Ideas flow freely, every voice shapes the bigger vision.",
   },
   {
     icon: RefreshCw,
@@ -83,7 +83,7 @@ const cultureBodyRight = `We prioritize professionalism and integrity, ensuring 
 const riotParagraphs = [
   "At RIOT Ecommerce, we specialize in providing expert ecommerce backend support to help online businesses run smoothly. Our services include order processing, inventory management, product listing optimization, and issue resolution.",
   "With experience supporting global ecommerce businesses, we take pride in delivering efficient, scalable, and results-driven solutions. Our team is committed to enhancing online store performance and improving customer satisfaction.",
-  "If you're looking for a team that simplifies ecommerce, enhances efficiency, and supports business growth — RIOT Ecommerce is the place for you.",
+  "If you're looking for a team that simplifies ecommerce, enhances efficiency, and supports business growth then RIOT Ecommerce is the place for you.",
 ];
 
 const riotHighlights = [
@@ -152,7 +152,7 @@ const Experts = () => {
 
             <p className="text-lg sm:text-xl text-white/45 max-w-2xl mx-auto leading-relaxed mb-10">
               Led by experienced operators who've been in the trenches. Our founders
-              don't just advise — they build, execute, and scale alongside you.
+              don't just advise - they build, execute, and scale alongside you.
             </p>
 
             {/* Founder preview pills */}

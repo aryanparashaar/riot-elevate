@@ -322,7 +322,7 @@ const HowItWorks = () => {
                   Website is ready to launch
                 </h3>
                 <p className="text-blue-100 text-sm leading-relaxed max-w-lg opacity-80">
-                  Powerful, user-friendly, and built for seamless online shopping — from
+                  Powerful, user-friendly, and built for seamless online shopping, from
                   custom design to smooth, scalable functionality.
                 </p>
               </div>
@@ -409,7 +409,7 @@ const HowItWorks = () => {
             </AnimatedSection>
             <AnimatedSection delay={0.1}>
               <p className="text-white/50 text-base leading-relaxed">
-                From finding the right vendors to keeping shelves stocked — we manage
+                From finding the right vendors to keeping shelves stocked, we manage
                 every step of the sourcing chain so you never run dry or overpay.
               </p>
             </AnimatedSection>
@@ -523,7 +523,7 @@ const HowItWorks = () => {
                 </div>
                 <div className="p-8 flex-1">
                   <p className="text-white/50 text-sm leading-relaxed mb-7">
-                    Content and SEO strategies that build sustainable traffic — assets
+                    Content and SEO strategies that build sustainable traffic, assets
                     that keep delivering long after the work is done.
                   </p>
                   <ul className="space-y-4">
@@ -561,7 +561,7 @@ const HowItWorks = () => {
               Ecommerce Support Services
             </h2>
             <p className="text-gray-400 text-base max-w-lg mx-auto mt-3 leading-relaxed">
-              Once you're live, we become your full operational backbone — handling
+              Once you're live, we become your full operational backbone by handling
               every moving part so your brand never misses a beat.
             </p>
           </AnimatedSection>
@@ -614,7 +614,7 @@ const HowItWorks = () => {
               Numbers that speak for themselves
             </h2>
             <p className="text-white/40 text-base max-w-lg mx-auto mt-3 leading-relaxed">
-              Every metric below is earned — not estimated. This is what 12+ years of
+              Every metric below is earned, not estimated. This is what 12+ years of
               obsessive execution looks like.
             </p>
           </AnimatedSection>

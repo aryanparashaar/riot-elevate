@@ -72,7 +72,7 @@ const principles = [
   {
     icon: Heart,
     title: "Team Collaboration",
-    desc: "Success is a team effort. Ideas flow freely and challenges are tackled together — always.",
+    desc: "Success is a team effort. Ideas flow freely and challenges are tackled together and always.",
   },
 ];
 
@@ -367,8 +367,8 @@ if (loading) return <HomeSkeleton />;
                   <p>
                     At RIOT Ecommerce, our purpose is simple: make ecommerce effortless
                     for businesses of all sizes. Managing an online business demands
-                    efficient operations, seamless support, and strategic growth planning
-                    — that's exactly where we step in.
+                    efficient operations, seamless support, and strategic growth planning,
+                    that's exactly where we step in.
                   </p>
                   <p>
                     We empower brands with expert backend support, optimized workflows,

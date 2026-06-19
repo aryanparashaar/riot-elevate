@@ -346,22 +346,22 @@ const services = [
   {
     id: "customer-support", icon: Headphones, label: "Support", number: "03",
     title: "Customer Support & Virtual Assistance",
-    tagline: "Real people, real help — 24/7 support that keeps customers coming back.",
-    description: "Customer retention starts with every single interaction. Our support teams operate as a true extension of your brand — knowledgeable, empathetic, and resolution-focused. We don't just close tickets; we build loyalty.",
+    tagline: "Real people, real help - 24/7 support that keeps customers coming back.",
+    description: "Customer retention starts with every single interaction. Our support teams operate as a true extension of your brand - knowledgeable, empathetic, and resolution-focused. We don't just close tickets; we build loyalty.",
     gradient: "from-emerald-500 via-teal-400 to-cyan-500",
     accentColor: "#10b981",
     Illustration: SupportIllustration,
     items: [
       { icon: MessageCircle, title: "Live Chat & Email Support", desc: "Providing real-time customer support to address queries, complaints, and concerns efficiently and with empathy." },
       { icon: Users, title: "Direct-to-Consumer Support", desc: "Offering dedicated customer support solutions that enhance user experience and build lasting brand loyalty." },
-      { icon: Settings, title: "Admin & Virtual Assistance", desc: "Taking care of administrative and operational tasks to help businesses focus on what matters most — growth." },
+      { icon: Settings, title: "Admin & Virtual Assistance", desc: "Taking care of administrative and operational tasks to help businesses focus on what matters most - growth." },
     ],
   },
   {
     id: "website-digital", icon: Globe, label: "Digital", number: "04",
     title: "Website & Digital Presence",
     tagline: "A powerful online presence that converts visitors into customers.",
-    description: "In today's digital-first world, your website is your storefront, your sales rep, and your first impression — all in one. We build fast, beautiful, conversion-optimised ecommerce experiences and fuel them with strategic content and marketing.",
+    description: "In today's digital-first world, your website is your storefront, your sales rep, and your first impression, all in one. We build fast, beautiful, conversion-optimised ecommerce experiences and fuel them with strategic content and marketing.",
     gradient: "from-violet-600 via-purple-500 to-blue-500",
     accentColor: "#8b5cf6",
     Illustration: WebIllustration,
@@ -445,7 +445,7 @@ const Services = () => {
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-400">success</span>
               </h1>
               <p className="text-lg text-white/50 leading-relaxed mb-10">
-                Expert-driven solutions to streamline your ecommerce operations, enhance efficiency, and drive growth. We handle the details - you achieve success.
+                Expert-driven solutions to streamline your ecommerce operations, enhance efficiency, and drive growth. We handle the details and you achieve success.
               </p>
               <div className="flex flex-wrap gap-3">
                 {services.map((s) => (

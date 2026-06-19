@@ -30,7 +30,7 @@ const faqs = [
   {
     category: "General",
     q: "When should I consider working with RIOT Ecommerce?",
-    a: "If you're struggling with high support ticket volumes, inefficient workflows, backend issues, or need expert guidance to scale — RIOT Ecommerce is the perfect partner to streamline your operations and grow efficiently.",
+    a: "If you're struggling with high support ticket volumes, inefficient workflows, backend issues, or need expert guidance to scale then RIOT Ecommerce is the perfect partner to streamline your operations and grow efficiently.",
   },
   {
     category: "Services",
@@ -40,12 +40,12 @@ const faqs = [
   {
     category: "Services",
     q: "Can you help with ecommerce scaling and automation?",
-    a: "Absolutely. We implement process automation, workflow optimisations, and data-driven strategies to scale your business efficiently — reducing manual work and increasing output without adding headcount.",
+    a: "Absolutely. We implement process automation, workflow optimisations, and data-driven strategies to scale your business efficiently, reducing manual work and increasing output without adding headcount.",
   },
   {
     category: "Services",
     q: "Does RIOT Ecommerce provide marketing services?",
-    a: "Yes — we also assist with email automation, digital marketing, social media management, content writing, and paid traffic campaigns across Google and Meta.",
+    a: "Yes, we also assist with email automation, digital marketing, social media management, content writing, and paid traffic campaigns across Google and Meta.",
   },
   {
     category: "Services",
@@ -55,17 +55,17 @@ const faqs = [
   {
     category: "Support",
     q: "Do you provide customer service solutions?",
-    a: "Yes. We specialise in CRM integration, live chat support, email support, and full issue resolution — ensuring your customers get quick, empathetic responses and better service experiences every time.",
+    a: "Yes. We specialise in CRM integration, live chat support, email support, and full issue resolution that ensures your customers get quick, empathetic responses and better service experiences every time.",
   },
   {
     category: "Support",
     q: "How does RIOT Ecommerce reduce support tickets for ecommerce brands?",
-    a: "Through self-service options, proactive communication, and streamlined CRM workflows, we reduce ticket volumes by up to 40% — leading to faster response times and measurably better customer experiences.",
+    a: "Through self-service options, proactive communication, and streamlined CRM workflows, we reduce ticket volumes by up to 40%, leading to faster response times and measurably better customer experiences.",
   },
   {
     category: "Support",
     q: "Do RIOT Ecommerce offer ongoing support or one-time services?",
-    a: "We provide both. Whether you need long-term backend management as a permanent extension of your team, or specific project-based assistance for a one-time deliverable — we have you covered.",
+    a: "We provide both. Whether you need long-term backend management as a permanent extension of your team, or specific project-based assistance for a one-time deliverable, we have you covered.",
   },
   {
     category: "Support",
@@ -75,7 +75,7 @@ const faqs = [
   {
     category: "Pricing",
     q: "How much do RIOT Ecommerce services cost?",
-    a: "Our pricing depends on the services you need, the complexity of your operations, and the level of support required. We offer flexible plans tailored to your business. Contact us for a custom quote — there's no one-size-fits-all here.",
+    a: "Our pricing depends on the services you need, the complexity of your operations, and the level of support required. We offer flexible plans tailored to your business. Contact us for a custom quote, there's no one-size-fits-all here.",
   },
   {
     category: "Security",
@@ -154,7 +154,7 @@ const FAQ = () => {
               </span>
             </h1>
             <p className="text-lg text-white/45 max-w-xl mx-auto leading-relaxed mb-10">
-              Everything you need to know about partnering with RIOT Ecommerce — straight answers, no fluff.
+              Everything you need to know about partnering with RIOT Ecommerce - straight answers, no fluff.
             </p>
 
             {/* Search bar */}
@@ -299,7 +299,7 @@ const FAQ = () => {
                     Still have a question?
                   </h3>
                   <p className="text-white/50 text-sm leading-relaxed mb-8 flex-1">
-                    Can't find what you're looking for? Our team responds to every message personally — usually within a few hours.
+                    Can't find what you're looking for? Our team responds to every message personally, usually within a few hours.
                   </p>
                   <Link
                     to="/contact"

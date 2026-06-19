@@ -48,7 +48,7 @@ const services = [
     icon: Settings,
     title: "Ecommerce Operations & Backend Support",
     description:
-      "Bulletproof order management, inventory sync, and fulfillment optimization — engineered to scale with zero downtime.",
+      "Bulletproof order management, inventory sync, and fulfillment optimization, engineered to scale with zero downtime.",
     image: ecommerceOps,
     accent: "#3b82f6",
     gradient: "from-blue-500 to-cyan-400",

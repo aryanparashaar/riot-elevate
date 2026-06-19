@@ -88,7 +88,7 @@ const Contact = () => {
               Let's Build Your Growth Engine
             </h1>
             <p className="text-lg text-hero-foreground/50 leading-relaxed">
-              Ready to stop firefighting and start scaling? Book a free strategy call — we'll map your next phase of growth in 30 minutes.
+              Ready to stop firefighting and start scaling? Book a free strategy call and we'll map your next phase of growth.
             </p>
           </AnimatedSection>
         </div>
@@ -126,7 +126,7 @@ const Contact = () => {
               <div className="card-premium p-6">
                 <h3 className="font-display font-semibold text-card-foreground mb-2">Free Strategy Call</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  30-minute discovery session. We'll audit your operations, identify quick wins, and outline a roadmap — no strings attached.
+                  30-minute discovery session. We'll audit your operations, identify quick wins, and outline a roadmap, no strings attached.
                 </p>
               </div>
             </AnimatedSection>

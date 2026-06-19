@@ -48,7 +48,7 @@ const cases = [
     title: "Multi-Category Retailer",
     subtitle: "From unknown to category leader.",
     description:
-      "A multi-category retailer with no brand identity was competing purely on price. RIOT overhauled their brand logo, palette, typography, and digital presence — while managing their social media and content strategy end-to-end.",
+      "A multi-category retailer with no brand identity was competing purely on price. RIOT overhauled their brand logo, palette, typography, and digital presence - while managing their social media and content strategy end-to-end.",
     results: [
       { label: "Brand Recognition", value: "↑ 80%", color: "#8b5cf6" },
       { label: "Social Followers", value: "↑ 220%", color: "#f59e0b" },
@@ -86,7 +86,7 @@ const cases = [
     title: "Electronics Marketplace",
     subtitle: "Data-driven growth across 50+ brands.",
     description:
-      "A marketplace managing 50+ brand partners had zero unified analytics. RIOT built real-time dashboards, launched platform-wide email marketing campaigns, and ran SEO + paid campaigns — giving every brand partner full visibility and growth.",
+      "A marketplace managing 50+ brand partners had zero unified analytics. RIOT built real-time dashboards, launched platform-wide email marketing campaigns, and ran SEO + paid campaigns - giving every brand partner full visibility and growth.",
     results: [
       { label: "Brands Onboarded", value: "50+", color: "#06b6d4" },
       { label: "Email Open Rate", value: "↑ 55%", color: "#10b981" },
@@ -322,7 +322,7 @@ const CaseStudiesSection = () => {
               Want results like these?
             </p>
             <p className="text-white/40 text-sm">
-              Tell us your challenge — we'll engineer the solution.
+              Tell us your challenge and we'll engineer the solution.
             </p>
           </div>
           <Link
