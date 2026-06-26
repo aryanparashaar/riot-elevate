@@ -111,15 +111,16 @@ const Navbar = () => {
               <ArrowRight size={13} />
             </Link>
 
-            {/* Mobile hamburger */}
-            <button
-              onClick={() => setOpen(!open)}
-              aria-label="Toggle menu"
-              className={`lg:hidden w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200 ${scrolled
-                ? "bg-gray-100 hover:bg-gray-200 text-gray-700"
-                : "bg-white/10 hover:bg-white/20 text-white"
-                }`}
-            >
+            {/* Mobile hamburger - FIXED */}
+<button
+  onClick={() => setOpen(!open)}
+  aria-label="Toggle menu"
+  className={`lg:hidden w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200 ${
+    scrolled
+      ? "bg-gray-100 hover:bg-gray-200 text-gray-700"   // ✅ already correct
+      : "bg-white/10 hover:bg-white/20 text-white"       // ✅ fine on dark bg
+  }`}
+>
               <AnimatePresence mode="wait" initial={false}>
                 {open ? (
                   <motion.span
@@ -158,7 +159,7 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.22, ease: "easeOut" }}
-            className="lg:hidden bg-[#060810]/97 backdrop-blur-xl border-b border-white/10 shadow-2xl"
+            className="lg:hidden bg-[#060810] backdrop-blur-xl border-b border-white/10 shadow-2xl"
           >
             {/* Top accent line */}
             <div className="h-px bg-gradient-to-r from-transparent via-blue-500/40 to-transparent" />
